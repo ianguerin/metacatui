@@ -416,9 +416,9 @@ define(["jquery", "underscore", "backbone", "uuid", "models/DataONEObject",
                 }
 
                 // Update the attributeList section
-                let attributeList = this.get("attributeList");
-                let attributeListInDOM = $(objectDOM).children("attributelist");
-                let attributeListNode;
+                var attributeList = this.get("attributeList");
+                var attributeListInDOM = $(objectDOM).children("attributelist");
+                var attributeListNode;
                 if ( attributeListInDOM.length ) {
                     attributeListNode = attributeListInDOM[0];
                     $(attributeListNode).children().remove(); // Each attr will be replaced
@@ -520,7 +520,7 @@ define(["jquery", "underscore", "backbone", "uuid", "models/DataONEObject",
                 return DataONEObject.prototype.formatXML.call(this, xmlString);
             },
 
-	        /* Let the top level package know of attribute changes from this object */
+	        /* var the top level package know of attribute changes from this object */
 	        trickleUpChange: function(){
 	            MetacatUI.rootDataPackage.packageModel.set("changed", true);
 	        }

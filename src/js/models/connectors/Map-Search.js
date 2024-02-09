@@ -65,7 +65,7 @@ define([
         if (!this.get("searchResults")) {
           this.set("searchResults", new SearchResults());
         }
-        const add = options?.addGeohashLayer ?? true;
+        const add = options.addGeohashLayer || true;
         this.findAndSetGeohashLayer(add);
       },
 
@@ -78,7 +78,7 @@ define([
       findGeohash: function () {
         const layers = this.get("layers");
         if (!layers) return null;
-        let geohashes = layers.getAll("CesiumGeohash");
+        var geohashes = layers.getAll("CesiumGeohash");
         if (!geohashes || !geohashes.length) {
           return null;
         } else {
@@ -134,7 +134,7 @@ define([
         this.disconnect();
         const layers = this.findLayers() || this.createLayers();
         this.set("layers", layers);
-        let geohash = this.findGeohash() || (add ? this.createGeohash() : null);
+        var geohash = this.findGeohash() || (add ? this.createGeohash() : null);
         this.set("geohashLayer", geohash);
         if (wasConnected) {
           this.connect();
@@ -218,7 +218,7 @@ define([
        * @fires CesiumGeohash#change:visible
        */
       hideGeoHashLayer: function () {
-        this.get("geohashLayer")?.set("temporarilyHidden", true);
+        this.get("geohashLayer").set("temporarilyHidden", true);
       },
 
       /**
@@ -227,7 +227,7 @@ define([
        * @fires CesiumGeohash#change:visible
        */
       showGeoHashLayer: function () {
-        this.get("geohashLayer")?.set("temporarilyHidden", false);
+        this.get("geohashLayer").set("temporarilyHidden", false);
       },
 
       /**
@@ -236,7 +236,7 @@ define([
        */
       disconnect: function () {
         const map = this.get("map");
-        const interactions = map?.get("interactions");
+        const interactions = map.get("interactions");
         const searchResults = this.get("searchResults");
         this.stopListening(searchResults, "update reset");
         this.stopListening(searchResults, "change:showOnMap");
@@ -257,7 +257,7 @@ define([
       facetCountsToGeohashAttrs: function (counts) {
         if (!counts) return [];
         const props = [];
-        for (let i = 0; i < counts.length; i += 2) {
+        for (var i = 0; i < counts.length; i += 2) {
           props.push({
             hashString: counts[i],
             properties: {
@@ -275,7 +275,7 @@ define([
        */
       getGeohashCounts: function () {
         const searchResults = this.get("searchResults");
-        const facetCounts = searchResults?.facetCounts;
+        const facetCounts = searchResults.facetCounts;
         if (!facetCounts) return null;
         const geohashFacets = Object.keys(facetCounts).filter((key) =>
           key.startsWith("geohash_")

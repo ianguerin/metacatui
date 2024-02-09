@@ -206,7 +206,7 @@ define([
        * @since 2.25.0
        */
       precisionsToFields: function (precisions) {
-        let fields = [];
+        var fields = [];
         if (precisions && precisions.length) {
           fields = precisions
             .map((lvl) => this.precisionToField(lvl))
@@ -229,7 +229,7 @@ define([
         try {
           // Methods in the geohash collection allow us make efficient queries
           const hashes = this.get("values");
-          let geohashes = new Geohashes(hashes.map((h) => ({ hashString: h })));
+          var geohashes = new Geohashes(hashes.map((h) => ({ hashString: h })));
 
           // Don't spatially constrain the search if the geohahes covers the world
           // or if there are no geohashes
@@ -333,7 +333,7 @@ define([
         // the values are reset, preventing the reset from working.
         this.removeListeners();
 
-        let df = this.defaults();
+        var df = this.defaults();
         
         this.set({
           values: df.values,

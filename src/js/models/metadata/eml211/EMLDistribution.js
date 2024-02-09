@@ -137,7 +137,7 @@ define(["jquery", "underscore", "backbone", "models/DataONEObject"], function (
         const location = $objectDOM.find(distLocation);
         if (location.length) {
           this[`${distLocation}Nodes`].forEach((nodeName) => {
-            const value = location.children(nodeName)?.text()?.trim();
+            const value = location.children(nodeName).text().trim();
             if (value.length) {
               attributes[nodeNameMap[nodeName]] = value;
             }
@@ -280,7 +280,7 @@ define(["jquery", "underscore", "backbone", "models/DataONEObject"], function (
       this.distLocations.forEach((distLocation) => {
         const nodeOrder = this[`${distLocation}Nodes`];
         const siblingNodes = $(objectDOM).find(distLocation).children();
-        let position = nodeOrder.indexOf(nodeName);
+        var position = nodeOrder.indexOf(nodeName);
         if (position > -1) {
           // Go through each node in the node list and find the position where
           // this node will be inserted after
@@ -317,7 +317,7 @@ define(["jquery", "underscore", "backbone", "models/DataONEObject"], function (
     },
 
     trickleUpChange: function () {
-      MetacatUI.rootDataPackage?.packageModel?.set("changed", true);
+      MetacatUI.rootDataPackage.packageModel.set("changed", true);
     },
 
     formatXML: function (xmlString) {

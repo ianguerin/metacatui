@@ -388,7 +388,7 @@ define(["jquery",
                 }
 
                 // JSON Linked Data Object
-                let elJSON = {
+                var elJSON = {
                     "@context": {
                         "@vocab": "http://schema.org/"
                     },
@@ -397,7 +397,7 @@ define(["jquery",
                 if (nodeModelObject) {
                     // "keywords": "",
                     // "provider": "",
-                    let conditionalData = {
+                    var conditionalData = {
                         "description": nodeModelObject.description,
                         "identifier": nodeModelObject.identifier,
                         "image": nodeModelObject.logo,
@@ -777,7 +777,7 @@ define(["jquery",
                 this.triggerSearch();
 
                 // Track this event
-                MetacatUI.analytics?.trackEvent("search", "filter, " + category, value)
+                MetacatUI.analytics.trackEvent("search", "filter, " + category, value)
             },
 
             // Update the UI year slider and input values
@@ -975,7 +975,7 @@ define(["jquery",
                             });
 
                             // Track this event
-                            MetacatUI.analytics?.trackEvent("search", "filter, Data Year", minVal + " to " + maxVal);
+                            MetacatUI.analytics.trackEvent("search", "filter, Data Year", minVal + " to " + maxVal);
 
                         } else {
                             // Add the filter elements
@@ -985,7 +985,7 @@ define(["jquery",
                                 });
 
                                 // Track this event
-                                MetacatUI.analytics?.trackEvent("search", "filter, Publication Year", minVal + " to " + maxVal);
+                                MetacatUI.analytics.trackEvent("search", "filter, Publication Year", minVal + " to " + maxVal);
 
                             } else {
                                 this.hideFilter($("#publish_year").attr("data-category"), true);
@@ -997,7 +997,7 @@ define(["jquery",
                                 });
 
                                 // Track this event
-                                MetacatUI.analytics?.trackEvent("search", "filter, Data Year", minVal + " to " + maxVal);
+                                MetacatUI.analytics.trackEvent("search", "filter, Data Year", minVal + " to " + maxVal);
 
                             } else {
                                 this.hideFilter($("#data_year").attr("data-category"), true);
@@ -1113,7 +1113,7 @@ define(["jquery",
                 this.triggerSearch();
 
                 // Track this event
-                MetacatUI.analytics?.trackEvent("search", "filter, " + category, term);
+                MetacatUI.analytics.trackEvent("search", "filter, " + category, term);
 
             },
 
@@ -2008,7 +2008,7 @@ define(["jquery",
                 google.maps.event.trigger(this.mapModel.get("map"), "idle");
 
                 // Track this event
-                MetacatUI.analytics?.trackEvent("map", (isOn ? "on" : "off"));
+                MetacatUI.analytics.trackEvent("map", (isOn ? "on" : "off"));
 
             },
 
@@ -2447,7 +2447,7 @@ define(["jquery",
 
 
                         // Track this event
-                        MetacatUI.analytics?.trackEvent("map", "clickTile", "geohash : " + tileObject.geohash);
+                        MetacatUI.analytics.trackEvent("map", "clickTile", "geohash : " + tileObject.geohash);
 
                     });
                 }

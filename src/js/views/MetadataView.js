@@ -570,7 +570,7 @@ define(['jquery',
           try {
             //Check if a query string was in the URL and if so, try removing it in the identifier
             if (this.model.get("id").match(/\?\S+\=\S+/g) && !this.findTries) {
-              let newID = this.model.get("id").replace(/\?\S+\=\S+/g, "");
+              var newID = this.model.get("id").replace(/\?\S+\=\S+/g, "");
               this.onClose();
               this.model.set("id", newID);
               this.pid = newID;
@@ -879,7 +879,7 @@ define(['jquery',
             // Get the most recent package to display the provenance graphs
             if (packages.length) {
               //Find the most recent Package model and fetch it
-              let mostRecentPackage = _.find(packages, p => !p.get("obsoletedBy"));
+              var mostRecentPackage = _.find(packages, p => !p.get("obsoletedBy"));
 
               //If all of the packages are obsoleted, then use the last package in the array,
               // which is most likely the most recent.
@@ -1442,7 +1442,7 @@ define(['jquery',
           // Convert the support mdq formatId list to a version
           // that JS regex likes (with special characters double
           RegExp.escape = function (s) {
-            return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\\\$&');
+            return s.replace(/[-\/\\^$*+.()|[\]{}]/g, '\\\\$&');
           };
           var mdqFormatIds = MetacatUI.appModel.get("mdqFormatIds");
 
@@ -1506,7 +1506,7 @@ define(['jquery',
          *Creates a button which the user can click to launch the package in Whole Tale
         */
         createWholeTaleButton: function () {
-          let self = this;
+          var self = this;
           MetacatUI.appModel.get('taleEnvironments').forEach(function (environment) {
             var queryParams =
               '?uri=' + window.location.href +

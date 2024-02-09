@@ -60,7 +60,7 @@ define(['jquery', 'underscore', 'backbone', 'models/DataONEObject'],
       if( typeof text !== "string" )
         return "";
 
-      let model = this;
+      var model = this;
 
       require(["models/metadata/eml211/EML211"], function(EMLModel){
         //Get the EML model and use the cleanXMLText function to clean up the text
@@ -110,7 +110,7 @@ define(['jquery', 'underscore', 'backbone', 'models/DataONEObject'],
 
     parseNestedElements: function(nodeEl){
 
-      let children = $(nodeEl).children(),
+      var children = $(nodeEl).children(),
           paragraphs = [];
 
       children.each((i, childNode) => {

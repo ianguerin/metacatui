@@ -45,7 +45,7 @@ define(["jquery",
             }
 
 
-            let allPortalsView = new PortalListView();
+            var allPortalsView = new PortalListView();
 
             //Create titles for the My Portals and All Portals sections
             var title = $(document.createElement("h4"))
@@ -54,11 +54,11 @@ define(["jquery",
 
             // Filter datasets that the user has ownership of
             if ( MetacatUI.appUserModel.get("loggedIn") ) {
-              let filters = new Filters();
+              var filters = new Filters();
               filters.addWritePermissionFilter();
 
               //Render My Portals list
-              let myPortalsView = new PortalListView();
+              var myPortalsView = new PortalListView();
               myPortalsView.numPortals = 99999;
               myPortalsView.numPortalsPerPage = 5;
               myPortalsView.filters = filters;
@@ -71,9 +71,9 @@ define(["jquery",
               myPortalsView.render();
 
               //Exclude portals the user is an owner of from the All portals list
-              let allPortalsFilters = new Filters();
+              var allPortalsFilters = new Filters();
               allPortalsFilters.addWritePermissionFilter();
-              let permissionFilter = allPortalsFilters.at(allPortalsFilters.length-1);
+              var permissionFilter = allPortalsFilters.at(allPortalsFilters.length-1);
               if(permissionFilter){
                 permissionFilter.set("exclude", true);
                 allPortalsView.filters = allPortalsFilters;

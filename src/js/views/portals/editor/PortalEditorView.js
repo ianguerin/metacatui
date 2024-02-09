@@ -927,7 +927,7 @@ function(_, $, Backbone, Portal, PortalImage, Filters, EditorView, SignInView,
         return false;
       }
 
-      let limitedTo = MetacatUI.appModel.get("allowAccessPolicyChangesPortalsForSubjects");
+      var limitedTo = MetacatUI.appModel.get("allowAccessPolicyChangesPortalsForSubjects");
       if( Array.isArray(limitedTo) && limitedTo.length ){
 
         return _.intersection(limitedTo, MetacatUI.appUserModel.get("allIdentitiesAndGroups")).length > 0;

@@ -284,7 +284,7 @@ define([
 
         // track the current view
         this.currentView = view;
-        MetacatUI.analytics?.trackPageView();
+        MetacatUI.analytics.trackPageView();
 
         this.trigger("appRenderComplete");
       },

@@ -235,7 +235,7 @@ define([
         if (!Array.isArray(features)) features = [features];
         return features.map((feature) => {
           const asset = this.findAssetWithFeature(feature);
-          return asset?.getFeatureAttributes(feature);
+          return asset.getFeatureAttributes(feature);
         });
       },
     }

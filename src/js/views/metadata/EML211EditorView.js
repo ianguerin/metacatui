@@ -285,7 +285,7 @@ define(['underscore',
             return false;
           }
 
-          let limitedTo = MetacatUI.appModel.get("allowAccessPolicyChangesDatasetsForSubjects");
+          var limitedTo = MetacatUI.appModel.get("allowAccessPolicyChangesDatasetsForSubjects");
           if( Array.isArray(limitedTo) && limitedTo.length ){
 
             return _.intersection(limitedTo, MetacatUI.appUserModel.get("allIdentitiesAndGroups")).length > 0;
@@ -439,8 +439,8 @@ define(['underscore',
           try{
             //Inherit the access policy of the metadata document, if the metadata document is not `new`
             if(!this.model.isNew()){
-              let metadataAccPolicy = this.model.get("accessPolicy");
-              let accPolicy = MetacatUI.rootDataPackage.packageModel.get("accessPolicy")
+              var metadataAccPolicy = this.model.get("accessPolicy");
+              var accPolicy = MetacatUI.rootDataPackage.packageModel.get("accessPolicy")
 
               //If there is no access policy, it hasn't been fetched yet, so wait
               if( !metadataAccPolicy.length ){
@@ -1070,7 +1070,7 @@ define(['underscore',
         toggleEnableControls: function(){
 
           if( MetacatUI.rootDataPackage.packageModel.get("isLoadingFiles") ){
-            let noun = MetacatUI.rootDataPackage.packageModel.get("numLoadingFiles") > 1? " files" : " file";
+            var noun = MetacatUI.rootDataPackage.packageModel.get("numLoadingFiles") > 1? " files" : " file";
             this.disableControls("Waiting for " + MetacatUI.rootDataPackage.packageModel.get("numLoadingFiles") + noun + " to upload...");
           }
           else{
@@ -1146,7 +1146,7 @@ define(['underscore',
           if (errors) {
 
             //Create a list of errors to display in the error message shown to the user
-            let errorList = "<ul>" +
+            var errorList = "<ul>" +
                             this.getErrorListItem(errors) +
                             "</ul>";
 
@@ -1371,10 +1371,10 @@ define(['underscore',
         * @extends EditorView.getRequiredFields
         */
         getRequiredFields: function(){
-          let requiredFields = _.clone(MetacatUI.appModel.get("emlEditorRequiredFields"));
+          var requiredFields = _.clone(MetacatUI.appModel.get("emlEditorRequiredFields"));
 
           //Add required fields for Custom Methods, which are configured in a different property of the AppConfig
-          let customMethodOptions =  MetacatUI.appModel.get("customEMLMethods");
+          var customMethodOptions =  MetacatUI.appModel.get("customEMLMethods");
           if(customMethodOptions){
             customMethodOptions.forEach(options => {
               if( options.required && !requiredFields[options.id] ){

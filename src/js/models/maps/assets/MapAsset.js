@@ -347,7 +347,7 @@ define([
        */
       setError: function (error) {
         // See https://cesium.com/learn/cesiumjs/ref-doc/RequestErrorEvent.html
-        let details = error;
+        var details = error;
         // Write a helpful error message
         switch (error.statusCode) {
           case 404:
@@ -584,7 +584,7 @@ define([
 
           if (customProperties) {
             _.each(customProperties, function (config, key) {
-              let formattedValue = "";
+              var formattedValue = "";
               if (config.type === "date") {
                 formattedValue = model.formatDateProperty(config, properties);
                 // TODO: support formatted numbers and booleans...
@@ -626,7 +626,7 @@ define([
           if (!properties) {
             properties = {};
           }
-          let formattedDate = "";
+          var formattedDate = "";
           if (!config || !config.format) {
             return formattedDate;
           }
@@ -663,7 +663,7 @@ define([
           if (!properties) {
             properties = {};
           }
-          let formattedString = "";
+          var formattedString = "";
           if (!config || !config.value) {
             return formattedString;
           }
@@ -684,7 +684,7 @@ define([
       //     if (!properties) {
       //       properties = {}
       //     }
-      //     let formattedNumber = ''
+      //     var formattedNumber = ''
       //     // TODO...
       //   }
       //   catch (error) {
@@ -701,7 +701,7 @@ define([
       //     if (!properties) {
       //       properties = {}
       //     }
-      //     let formattedBoolean = ''
+      //     var formattedBoolean = ''
       //     // TODO...
       //   }
       //   catch (error) {
@@ -798,7 +798,7 @@ define([
             var converter = new showdown.Converter({
               extensions: ["xssfilter"],
             });
-            let sanitizedIcon = converter.makeHtml(icon);
+            var sanitizedIcon = converter.makeHtml(icon);
             // Remove the <p></p> tags that showdown wraps the string in
             sanitizedIcon = sanitizedIcon.replace(/^(<p>)/, "");
             sanitizedIcon = sanitizedIcon.replace(/(<\/p>)$/, "");
@@ -862,7 +862,7 @@ define([
           const model = this;
           const colorPalette = model.get("colorPalette");
           return (
-            colorPalette?.getColor(properties) ||
+            colorPalette.getColor(properties) ||
             new AssetColorPalette().getDefaultColor()
           );
         } catch (e) {
@@ -896,7 +896,7 @@ define([
        * @since 2.27.0
        */
       zoomTo: function (target) {
-        this.get("mapModel")?.zoomTo(target);
+        this.get("mapModel").zoomTo(target);
       },
 
       /**

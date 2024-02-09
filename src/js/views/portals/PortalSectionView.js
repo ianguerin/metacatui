@@ -144,7 +144,7 @@ define(["jquery",
               }
           });
 
-          this.markdownView?.tocView?.setAffix();
+          this.markdownView.tocView.setAffix();
         },
 
         /**

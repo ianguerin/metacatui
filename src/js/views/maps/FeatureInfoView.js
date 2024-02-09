@@ -265,7 +265,7 @@ define(
             const layerDetailsButton = this.elements.layerDetailsButton
             const zoomButton = this.elements.zoomButton
             const mapAsset = this.model.get('mapAsset')
-            let mapAssetLabel = mapAsset ? mapAsset.get('label') : null
+            var mapAssetLabel = mapAsset ? mapAsset.get('label') : null
             const layerButtonDisplay = mapAsset ? null : 'none'
             const layerButtonText = 'See ' + mapAssetLabel + ' layer details'
             // The Cesium Map Widget can't zoom to Cesium3DTileFeatures, so for now, hide
@@ -317,7 +317,7 @@ define(
          * @since 2.27.0
          */
         updateIFrameHeight: function (height, limit = true) {
-          const iFrame = this.elements?.iFrame;
+          const iFrame = this.elements.iFrame;
           if (!iFrame) return;
           if ((!height && height !== 0) || height < 0) {
             height = iFrame.contentWindow.document.body.scrollHeight + 5;
@@ -340,8 +340,8 @@ define(
         getContent: function () {
           try {
 
-            let content = null;
-            let templateOptions = this.model.toJSON();
+            var content = null;
+            var templateOptions = this.model.toJSON();
             const mapAsset = this.model.get('mapAsset')
             const featureProperties = this.model.get('properties')
             const templateConfig = mapAsset ? mapAsset.get('featureTemplate') : null
@@ -351,7 +351,7 @@ define(
 
             // Given the name of a template configured in the MapAsset model, find the
             // matching template from the contentTemplates set on this view
-            let contentTemplate = contentTemplates.find(
+            var contentTemplate = contentTemplates.find(
               template => template.name == templateName
             );
             if (!contentTemplate) {
@@ -399,8 +399,8 @@ define(
          */
         getFeatureTitle: function () {
           try {
-            let title = '';
-            let suffix = '';
+            var title = '';
+            var suffix = '';
 
             if (this.model) {
 
@@ -408,9 +408,9 @@ define(
               const mapAsset = this.model.get('mapAsset')
 
               const featureTemplate = mapAsset ? mapAsset.get('featureTemplate') : null;
-              const properties = this.model.get('properties') ?? {};
+              const properties = this.model.get('properties') || {};
               const assetName = mapAsset ? mapAsset.get('label') : null;
-              let name = featureTemplate ? properties[featureTemplate.label] : this.model.get('label');
+              var name = featureTemplate ? properties[featureTemplate.label] : this.model.get('label');
 
               // Build a title if the feature has no label. Check if the feature has a name,
               // title, ID, or identifier property. Search for these properties independent
@@ -420,7 +420,7 @@ define(
 
                 title = 'Feature';
 
-                let searchKeys = ['name', 'title', 'id', 'identifier']
+                var searchKeys = ['name', 'title', 'id', 'identifier']
                 searchKeys = searchKeys.map(key => key.toLowerCase());
                 const propKeys = Object.keys(properties)
                 const propKeysLower = propKeys.map(key => key.toLowerCase());
@@ -435,7 +435,7 @@ define(
                 // in the original case).
                 const nameKey = propKeys[propKeysLower.indexOf(nameKeyLower)]
 
-                name = properties[nameKey] ?? this.model.get('featureID');
+                name = properties[nameKey] || this.model.get('featureID');
 
                 if (assetName) {
                   suffix = ' from ' + assetName + ' Layer'

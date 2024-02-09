@@ -45,7 +45,7 @@ define(
             if (!properties) {
               properties = {};
             }
-            let visible = true;
+            var visible = true;
             this.each(function (filter) {
               visible = visible && filter.featureIsVisible(properties);
             });

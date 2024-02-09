@@ -74,7 +74,7 @@ define(["backbone", "collections/Filters", "models/maps/Map"], function (
           if (!this.get("map")) {
             this.set("map", new Map());
           }
-          const add = options?.addSpatialFilter ?? true;
+          const add = options.addSpatialFilter || true;
           this.findAndSetSpatialFilters(add);
         } catch (e) {
           console.log("Error initializing Filters-Map connector: ", e);
@@ -131,7 +131,7 @@ define(["backbone", "collections/Filters", "models/maps/Map"], function (
        */
       addSpatialFilterIfNeeded: function (add) {
         const spatialFilters = this.get("spatialFilters");
-        if (!spatialFilters?.length && add) {
+        if (!spatialFilters.length && add) {
           this.get("filters").add({
             filterType: "SpatialFilter",
             isInvisible: true,
@@ -145,7 +145,7 @@ define(["backbone", "collections/Filters", "models/maps/Map"], function (
        */
       removeSpatialFilter: function () {
         const spatialFilters = this.get("spatialFilters");
-        if (spatialFilters?.length) {
+        if (spatialFilters.length) {
           this.stopListening(
             this.get("filters"),
             "add remove",
@@ -164,7 +164,7 @@ define(["backbone", "collections/Filters", "models/maps/Map"], function (
        */
       resetSpatialFilter: function () {
         const spatialFilters = this.get("spatialFilters");
-        if (spatialFilters?.length) {
+        if (spatialFilters.length) {
           spatialFilters.forEach((filter) => {
             filter.resetValue();
           });
@@ -183,7 +183,7 @@ define(["backbone", "collections/Filters", "models/maps/Map"], function (
           if (resetSpatialFilter) {
             this.resetSpatialFilter();
           }
-          const interactions = this.get("map")?.get("interactions");
+          const interactions = this.get("map").get("interactions");
           this.stopListening(this.get("filters"), "add remove");
           this.stopListening(interactions, "moveEnd moveStartAndChanged");
           this.set("isConnected", false);
@@ -236,7 +236,7 @@ define(["backbone", "collections/Filters", "models/maps/Map"], function (
           const extent = map.get("interactions").get("viewExtent").toJSON();
           const spatialFilters = this.get("spatialFilters");
 
-          if (!spatialFilters?.length) {
+          if (!spatialFilters.length) {
             return;
           }
           spatialFilters.forEach((spFilter) => {

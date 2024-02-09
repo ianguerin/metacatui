@@ -159,7 +159,7 @@ define([
 
         // As a backup, use the default color
         const defaultColor = colorPalette.getDefaultColor();
-        let color = defaultColor;
+        var color = defaultColor;
 
         // The name of the property to conditionally color the features by
         const prop = colorPalette.get("property");
@@ -168,7 +168,7 @@ define([
         // Each palette type has different ways of getting the color
         const type = colorPalette.get("paletteType");
         // The collection of colors + conditions
-        let colors = colorPalette.get("colors");
+        var colors = colorPalette.get("colors");
 
         if (!colors || colors.length === 0) {
           // Do nothing
@@ -218,7 +218,7 @@ define([
           values[values.indexOf("max")] = this.get("maxVal");
         }
         const numColors = colors.length;
-        let i = 0;
+        var i = 0;
         while (i < numColors && value >= values[i]) {
           i++;
         }
@@ -248,7 +248,7 @@ define([
         // array. const sortedColors = colors.toArray().sort(function (a, b) {
         // return a.get('value') - b.get('value')
         // })
-        // let i = 0; while (i < sortedColors.length && propValue >=
+        // var i = 0; while (i < sortedColors.length && propValue >=
         // sortedColors[i].get('value')) { i++;
         // }
         // color = sortedColors[i].get('color');

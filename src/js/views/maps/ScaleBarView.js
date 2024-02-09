@@ -307,8 +307,8 @@ define(
           try {
 
             // Hide the scale bar if a measurement is not available
-            let label = null
-            let barWidth = 0
+            var label = null
+            var barWidth = 0
 
             if (pixels && meters && pixels > 0 && meters > 0) {
               const prettyValues = this.prettifyScaleValues(pixels, meters)
@@ -347,7 +347,7 @@ define(
           try {
 
             const view = this
-            let prettyValues = {
+            var prettyValues = {
               pixels: null,
               label: null
             }
@@ -357,9 +357,9 @@ define(
               const onePixelInMeters = meters / pixels
 
               // Find the first distance that makes the scale bar less than the maxBarWidth
-              let distance;
+              var distance;
               for (
-                let i = view.distances.length - 1;
+                var i = view.distances.length - 1;
                 !(distance !== undefined && distance !== null) && i >= 0;
                 --i
               ) {
@@ -370,7 +370,7 @@ define(
 
               if ((distance !== undefined && distance !== null)) {
 
-                let label;
+                var label;
                 if (distance >= 1000) {
                   label = (distance / 1000).toString() + ' km';
                 } else if (distance > 1) {

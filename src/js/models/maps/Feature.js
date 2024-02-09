@@ -105,7 +105,7 @@ define(["jquery", "underscore", "backbone"], function ($, _, Backbone) {
         if (feature instanceof Feature) {
           return feature.clone().attributes;
         }
-        let attrs = null;
+        var attrs = null;
         // if this is already an object with feature attributes, return it
         if (typeof feature == "object") {
           if (

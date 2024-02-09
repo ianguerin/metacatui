@@ -346,7 +346,7 @@ define(['jquery', 'underscore', 'backbone', 'models/DataONEObject'],
         if( !$(objectDOM).children().length )
           $(objectDOM).append(posNameNode);
         else{
-          let insertAfter = this.getEMLPosition(objectDOM, "positionname")
+          var insertAfter = this.getEMLPosition(objectDOM, "positionname")
           if(insertAfter)
             insertAfter.after(posNameNode);
           else
@@ -765,7 +765,7 @@ define(['jquery', 'underscore', 'backbone', 'models/DataONEObject'],
     errors = {};
 
       //If there are no values in this model that would be serialized, then the model is valid
-      if( !this.get("organizationName") && !this.get("positionName") && !givenName[0]?.length && !surName
+      if( !this.get("organizationName") && !this.get("positionName") && !givenName[0].length && !surName
           && !this.get("address").length && !this.get("phone").length && !this.get("fax").length
           && !this.get("email").length && !this.get("onlineUrl").length && !this.get("userId").length){
 
@@ -786,26 +786,26 @@ define(['jquery', 'underscore', 'backbone', 'models/DataONEObject'],
 
       }
       //If there is a first name and no last name, then this is not a valid individualName
-      else if( (givenName[0]?.length && !surName) && this.get("organizationName") && this.get("positionName") ){
+      else if( (givenName[0].length && !surName) && this.get("organizationName") && this.get("positionName") ){
 
         errors = { surName: "Provide a last name." }
 
       }
 
       //Check that each required field has a value. Required fields are configured in the {@link AppConfig}
-      let roles = this.get("type") == "associatedParty"? this.get("roles") : [this.get("type")];
+      var roles = this.get("type") == "associatedParty"? this.get("roles") : [this.get("type")];
       for( role of roles ){
-        let requiredFields = MetacatUI.appModel.get("emlEditorRequiredFields_EMLParty")[role];
-        requiredFields?.forEach(field=>{
-          let currentVal = this.get(field);
-          if( !currentVal || !currentVal?.length ){
+        var requiredFields = MetacatUI.appModel.get("emlEditorRequiredFields_EMLParty")[role];
+        requiredFields.forEach(field=>{
+          var currentVal = this.get(field);
+          if( !currentVal || !currentVal.length ){
             errors[field] = `Provide a${(["a","e","i","o","u"].includes(field.charAt(0))? "n " : " ")} ${field}. `;
           }
         });
       }
 
 	
-    return Object.keys(errors)?.length? errors : false;
+    return Object.keys(errors).length? errors : false;
 
   
     },
@@ -896,10 +896,10 @@ define(['jquery', 'underscore', 'backbone', 'models/DataONEObject'],
     toCSLJSON: function () {
       const name = this.get("individualName");
       const csl= {
-        family: name?.surName || null,
-        given: name?.givenName || null,
+        family: name.surName || null,
+        given: name.givenName || null,
         literal: this.get("organizationName") || this.get("positionName") || "",
-        "dropping-particle": name?.salutation || null,
+        "dropping-particle": name.salutation || null,
       }
       // If any of the fields are arrays, join them with a space
       for (const key in csl) {

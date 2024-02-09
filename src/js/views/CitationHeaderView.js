@@ -124,9 +124,9 @@ define([
         const numAuthorsGrp2 = (this.numAuthorsGrp2 = authorsGrp2.length);
 
         // Create a text string for both groups of authors.
-        let grp1Str = "";
-        let grp2Str = "";
-        let lastAuthStr = "";
+        var grp1Str = "";
+        var grp2Str = "";
+        var lastAuthStr = "";
 
         if (numAuthors === 0) {
           // Keep the strings empty if there are no authors.

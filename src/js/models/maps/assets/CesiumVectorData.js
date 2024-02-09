@@ -153,7 +153,7 @@ define([
 
           // If the cesium model already exists, don't create it again unless
           // specified
-          let dataSource = model.get("cesiumModel");
+          var dataSource = model.get("cesiumModel");
           if (dataSource) {
             if (!recreate) {
               return dataSource;
@@ -294,7 +294,7 @@ define([
         // property).
         if (!feature) return false;
         const baseMethod = MapAsset.prototype.usesFeatureType;
-        let result = baseMethod.call(this, feature);
+        var result = baseMethod.call(this, feature);
         if (result) return result;
         result = baseMethod.call(this, feature.id);
         return result;
@@ -311,7 +311,7 @@ define([
         feature = this.getEntityFromMapObject(feature);
         if (!feature) return null;
         const featureProps = feature.properties;
-        let properties = {};
+        var properties = {};
         if (featureProps) {
           properties = feature.properties.getValue(new Date());
         }
@@ -395,14 +395,14 @@ define([
        */
       runVisualizers: function () {
         const dataSource = this.get("cesiumModel");
-        const visualizers = dataSource?._visualizers;
+        const visualizers = dataSource._visualizers;
         if (!visualizers || !visualizers.length) {
           this.whenVisualizersReady(this.runVisualizers.bind(this));
           return;
         }
         const time = Cesium.JulianDate.now();
-        let displayReadyNow = true
-        for (let x = 0; x < visualizers.length; x++) {
+        var displayReadyNow = true
+        for (var x = 0; x < visualizers.length; x++) {
           displayReadyNow = visualizers[x].update(time) && displayReadyNow;
         }
         if (!displayReadyNow) {
@@ -428,14 +428,14 @@ define([
        */
       whenVisualizersReady: function (callBack, pingRate = 100, maxPings = 30) {
         const model = this;
-        let pings = 0;
+        var pings = 0;
         const interval = setInterval(function () {
           pings++;
           if (pings > maxPings) {
             clearInterval(interval);
             return;
           }
-          const visualizers = model.get("cesiumModel")?._visualizers;
+          const visualizers = model.get("cesiumModel")._visualizers;
           if (visualizers && visualizers.length) {
             clearInterval(interval);
             callBack();
@@ -451,7 +451,7 @@ define([
       getEntityCollection: function () {
         const model = this;
         const dataSource = model.get("cesiumModel");
-        return dataSource?.entities;
+        return dataSource.entities;
       },
 
       /**
@@ -460,7 +460,7 @@ define([
        * @since 2.27.0
        */
       getEntities: function () {
-        return this.getEntityCollection()?.values || [];
+        return this.getEntityCollection().values || [];
       },
 
       /**
@@ -515,7 +515,7 @@ define([
         try {
           const entities = this.getEntityCollection();
           if (!entities) return false;
-          let removed = false;
+          var removed = false;
           // if entity is a string, remove by ID
           if (typeof entity === "string") {
             removed = entities.removeById(entity);
@@ -632,7 +632,7 @@ define([
        * @since 2.25.0
        */
       colorToCesiumColor: function (color) {
-        color = color?.get ? color.get("color") : color;
+        color = color.get ? color.get("color") : color;
         if (!color) return null;
         return new Cesium.Color(
           color.red,
@@ -696,7 +696,7 @@ define([
           return null;
         }
         const outlineColor = this.colorToCesiumColor(
-          this.get("outlineColor")?.get("color")
+          this.get("outlineColor").get("color")
         );
         return {
           color: color,
@@ -724,7 +724,7 @@ define([
           this.suspendEvents();
 
           for (var i = 0; i < entities.length; i++) {
-            let visible = true;
+            var visible = true;
             const entity = entities[i];
             if (filters && filters.length) {
               const properties = model.getPropertiesFromFeature(entity);
@@ -757,8 +757,8 @@ define([
             const entities = model.getEntities(); // .slice(0)?
             const boundingSpheres = [];
             const boundingSphereScratch = new Cesium.BoundingSphere();
-            for (let i = 0, len = entities.length; i < len; i++) {
-              let state = Cesium.BoundingSphereState.PENDING;
+            for (var i = 0, len = entities.length; i < len; i++) {
+              var state = Cesium.BoundingSphereState.PENDING;
               state = dataSourceDisplay.getBoundingSphere(
                 entities[i],
                 false,

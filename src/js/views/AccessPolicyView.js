@@ -244,13 +244,13 @@ function(_, $, Backbone, AccessRule, AccessPolicy, AccessRuleView, Template, Tog
       }
 
       //Get the public/private help text
-      let helpText = this.getPublicToggleHelpText();
+      var helpText = this.getPublicToggleHelpText();
 
       // Or if the public toggle is limited to a set of users and/or groups, and the current user is
       // not in that list, then display a message instead of the toggle
       if( !isEnabled || (Array.isArray(enabledSubjects) && enabledSubjects.length &&
           !_.intersection(enabledSubjects, MetacatUI.appUserModel.get("allIdentitiesAndGroups")).length)){
-            let isPublicClass = this.collection.isPublic()? "public" : "private";
+            var isPublicClass = this.collection.isPublic()? "public" : "private";
             this.$(".public-toggle-container").html( $(document.createElement("p")).addClass("public-toggle-disabled-text " + isPublicClass).text(helpText) );
             this.$(this.publicToggleSection).find("p.help").remove();
             return;

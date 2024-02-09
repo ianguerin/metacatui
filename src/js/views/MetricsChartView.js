@@ -169,7 +169,7 @@ define(['jquery', 'underscore', 'backbone', 'd3'],
               try {
                   metricMonths_parsed[index] = input_date_format.parse(part).getTime();
               }
-              catch {
+              catch(e) {
                   // replace null with current month
                   var today = new Date();
                   var yyyy = today.getFullYear();

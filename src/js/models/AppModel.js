@@ -1132,7 +1132,7 @@ define(['jquery', 'underscore', 'backbone'],
 
       /**
       * Limit portal Access policy editing to only a defined list of people or groups.
-      * To let everyone edit access policies for their own objects, keep this as an empty array
+      * To var everyone edit access policies for their own objects, keep this as an empty array
       * and make sure {@link AppConfig#allowAccessPolicyChangesPortals} is set to `true`
       * @type {boolean}
       * @default []
@@ -1150,7 +1150,7 @@ define(['jquery', 'underscore', 'backbone'],
 
       /**
       * Limit dataset Access policy editing to only a defined list of people or groups.
-      * To let everyone edit access policies for their own objects, keep this as an empty array
+      * To var everyone edit access policies for their own objects, keep this as an empty array
       * and make sure {@link AppConfig#allowAccessPolicyChangesDatasets} is set to `true`
       * @type {boolean}
       * @default true

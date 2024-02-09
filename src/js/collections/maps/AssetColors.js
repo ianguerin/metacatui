@@ -41,7 +41,7 @@ define(
          * @since 2.25.0
          */
         comparator: function (color) {
-          let value = color.get('value');
+          var value = color.get('value');
           if (value === 'min') {
             return -Infinity;
           } else if (value === 'max') {
@@ -57,7 +57,7 @@ define(
          * @return {AssetColor}
          */
         getDefaultColor: function () {
-          let defaultColor = this.at(-1)
+          var defaultColor = this.at(-1)
           if (!defaultColor) {
             defaultColor = new AssetColor();
           }

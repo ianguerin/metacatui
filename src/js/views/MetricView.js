@@ -122,7 +122,7 @@ define(['jquery', 'underscore', 'backbone', 'views/MetricModalView'],
                 }
 
                 //Track this event
-                MetacatUI.analytics?.trackEvent("metrics", "Click metric", this.metricName);
+                MetacatUI.analytics.trackEvent("metrics", "Click metric", this.metricName);
             }
         },
 

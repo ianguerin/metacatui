@@ -1395,7 +1395,7 @@ define(['jquery', 'underscore', 'backbone', 'uuid',
             //Save the EML as a plain text file, until drafts are a supported feature
             var copy = model.createTextCopy();
 
-            //If the EML copy successfully saved, let the user know that there is a copy saved behind the scenes
+            //If the EML copy successfully saved, var the user know that there is a copy saved behind the scenes
             model.listenToOnce(copy, "successSaving", function(){
 
               model.set("draftSaved", true);
@@ -1419,7 +1419,7 @@ define(['jquery', 'underscore', 'backbone', 'uuid',
             copy.save();
 
             // Track the error
-            MetacatUI.analytics?.trackException(
+            MetacatUI.analytics.trackException(
               `EML save error: ${errorMsg}, EML draft: ${copy.get("id")}`,
               model.get("id"),
               true
@@ -1436,7 +1436,7 @@ define(['jquery', 'underscore', 'backbone', 'uuid',
        * Checks if this EML model has all the required values necessary to save to the server
        */
       validate: function() {
-        let errors = {};
+        var errors = {};
 
         //A title is always required by EML
         if( !this.get("title").length || !this.get("title")[0] ){
@@ -1544,7 +1544,7 @@ define(['jquery', 'underscore', 'backbone', 'uuid',
         });
 
         //Validate the EML Methods
-        let emlMethods = this.get("methods");
+        var emlMethods = this.get("methods");
         if( emlMethods ){
           if( !emlMethods.isValid() ){
             errors.methods = emlMethods.validationError;
@@ -1638,18 +1638,18 @@ define(['jquery', 'underscore', 'backbone', 'uuid',
           //If this is an EMLParty type, check that there is a party of this type in the model
           else if( EMLParty.prototype.partyTypes.map(t=>t.dataCategory).includes(field) ){
             //If this is an associatedParty role
-            if( EMLParty.prototype.defaults().roleOptions?.includes(field) ){
-              if(!this.get("associatedParty")?.map(p=>p.get("roles")).flat().includes(field)){
+            if( EMLParty.prototype.defaults().roleOptions.includes(field) ){
+              if(!this.get("associatedParty").map(p=>p.get("roles")).flat().includes(field)){
                 errors[field] = "Provide information about the people or organization(s) in the role: " + 
-                  EMLParty.prototype.partyTypes.find(t=>t.dataCategory==field)?.label;
+                  EMLParty.prototype.partyTypes.find(t=>t.dataCategory==field).label;
               }
             }
-            else if( !this.get(field)?.length ){
+            else if( !this.get(field).length ){
               errors[field] = "Provide information about the people or organization(s) in the role: " + 
-                  EMLParty.prototype.partyTypes.find(t=>t.dataCategory==field)?.label;
+                  EMLParty.prototype.partyTypes.find(t=>t.dataCategory==field).label;
             }
           }
-          else if( !this.get(field) || !this.get(field)?.length ){
+          else if( !this.get(field) || !this.get(field).length ){
             errors[field] = "Provide a " + field + ".";
           }
         }
@@ -2096,7 +2096,7 @@ define(['jquery', 'underscore', 'backbone', 'uuid',
       /* Initialize the object XML for brand spankin' new EML objects */
       createXML: function() {
         
-          let emlSystem = MetacatUI.appModel.get("emlSystem");
+          var emlSystem = MetacatUI.appModel.get("emlSystem");
           emlSystem = (!emlSystem || typeof emlSystem != "string") ? "knb" : emlSystem;
 
           var xml = "<eml:eml xmlns:eml=\"https://eml.ecoinformatics.org/eml-2.2.0\"></eml:eml>",
@@ -2332,7 +2332,7 @@ define(['jquery', 'underscore', 'backbone', 'uuid',
           }
 
           //If no element name is provided, default to the dataset element.
-          let elementName = "";
+          var elementName = "";
           if( !annotationData.elementName ){
             elementName = "dataset"
           }
@@ -2343,15 +2343,15 @@ define(['jquery', 'underscore', 'backbone', 'uuid',
           delete annotationData.elementName;
 
           //Check if duplicates are allowed
-          let allowDuplicates = annotationData.allowDuplicates;
+          var allowDuplicates = annotationData.allowDuplicates;
           delete annotationData.allowDuplicates;
 
           //Create a new EMLAnnotation model
-          let annotation = new EMLAnnotation(annotationData);
+          var annotation = new EMLAnnotation(annotationData);
 
           //Update annotations set on the dataset element
           if( elementName == "dataset" ){
-            let annotations = this.get("annotations");
+            var annotations = this.get("annotations");
 
             //If the current annotations set on the EML model are not in Array form, change it to an array
             if( !annotations ){
@@ -2390,9 +2390,9 @@ define(['jquery', 'underscore', 'backbone', 'uuid',
       */
       getDataSensitivity: function(){
         try{
-          let annotations = this.get("annotations");
+          var annotations = this.get("annotations");
           if(annotations){
-            let found = annotations.where({ propertyURI: this.get("dataSensitivityPropertyURI") });
+            var found = annotations.where({ propertyURI: this.get("dataSensitivityPropertyURI") });
             if( !found || !found.length ){
               return;
             }

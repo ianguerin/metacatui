@@ -45,7 +45,7 @@ define(["jquery", "underscore", "backbone", "models/maps/Feature"], function (
        * Cesium3DTileFeature or an Entity.
        */
       getFeatureObjects: function (type) {
-        let featureObjects = this.getUniqueAttrs("featureObject");
+        var featureObjects = this.getUniqueAttrs("featureObject");
         if (type) {
           featureObjects = featureObjects.filter(function (featureObject) {
             return featureObject.constructor.name === type;
@@ -62,7 +62,7 @@ define(["jquery", "underscore", "backbone", "models/maps/Feature"], function (
        */
       getUniqueAttrs: function (attrName) {
         try {
-          let uniqueAttrs = [];
+          var uniqueAttrs = [];
           this.each(function (featureModel) {
             const attr = featureModel.get(attrName);
             if (attr && !uniqueAttrs.includes(attr)) {

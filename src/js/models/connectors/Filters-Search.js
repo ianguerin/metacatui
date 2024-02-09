@@ -105,7 +105,7 @@ define([
         const searchResults = this.get("searchResults");
 
         // Get the Solr query string from the Search filter collection
-        let query = filters.getQuery();
+        var query = filters.getQuery();
 
         // Set the query on the SolrResults collection
         searchResults.setQuery(query);
@@ -121,7 +121,7 @@ define([
         }
 
         // Get the page number
-        let page = MetacatUI.appModel.get("page") || 0;
+        var page = MetacatUI.appModel.get("page") || 0;
         searchResults.start = page * searchResults.rows;
 
         // Send the query to the server via the SolrResults collection

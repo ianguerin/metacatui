@@ -42,7 +42,7 @@ define(['jquery', 'underscore', 'backbone', 'models/SolrHeader', 'models/SolrRes
       this.maxYear     = options.maxYear || new Date().getFullYear();
       this.queryServiceUrl = options.queryServiceUrl || MetacatUI.appModel.get('queryServiceUrl');
 
-      if( MetacatUI.appModel.get("defaultSearchFields")?.length )
+      if( MetacatUI.appModel.get("defaultSearchFields").length )
         this.fields = MetacatUI.appModel.get("defaultSearchFields").join(",");
       else 
         this.fields = options.fields || "id,title";
@@ -259,7 +259,7 @@ define(['jquery', 'underscore', 'backbone', 'models/SolrHeader', 'models/SolrRes
         reset: true
       }
 
-      let usePOST = this.usePOST || (this.currentquery.length > 1500 && !MetacatUI.appModel.get("disableQueryPOSTs"));
+      var usePOST = this.usePOST || (this.currentquery.length > 1500 && !MetacatUI.appModel.get("disableQueryPOSTs"));
 
       if( usePOST ){
         options.type = "POST";
@@ -315,7 +315,7 @@ define(['jquery', 'underscore', 'backbone', 'models/SolrHeader', 'models/SolrRes
     * @returns {number|undefined}
     */
     getNumFound: function(){
-      return this.header?.get("numFound");
+      return this.header.get("numFound");
     },
 
     /**
@@ -324,7 +324,7 @@ define(['jquery', 'underscore', 'backbone', 'models/SolrHeader', 'models/SolrRes
     * @returns {number}
     */
     getNumPages: function(){
-      let total = this.getNumFound();
+      var total = this.getNumFound();
     
       if(total){
         return Math.ceil(total/this.header.get("rows"))-1; //-1 because our pages are zero-based numbered (where page 0 gets the first n results)
@@ -341,7 +341,7 @@ define(['jquery', 'underscore', 'backbone', 'models/SolrHeader', 'models/SolrRes
      */
     getCurrentPage: function(){
         
-        if(this.header?.get("start") && this.header?.get("rows")){
+        if(this.header.get("start") && this.header.get("rows")){
             return Math.ceil(this.header.get("start")/this.header.get("rows"));
         }
         else{

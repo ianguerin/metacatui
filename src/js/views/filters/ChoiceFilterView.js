@@ -262,7 +262,7 @@ define(['jquery', 'underscore', 'backbone',
         var choiceEditorEl = this.createChoiceEditor(choice);
         this.choicesEditor.append(choiceEditorEl)
 
-        // Don't let users remove or sort the new choice entry fields until some text has
+        // Don't var users remove or sort the new choice entry fields until some text has
         // been entered
         var removeButton = choiceEditorEl.find("." + this.removeChoiceClass);
         var handle = choiceEditorEl.find("." + this.choiceHandleClass);

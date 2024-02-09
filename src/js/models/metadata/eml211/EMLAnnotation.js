@@ -151,7 +151,7 @@ define(["jquery", "underscore", "backbone"],
             (typeof this.get("valueURI") !== "string" || this.get("valueURI").length <= 0)
         },
 
-        /* Let the top level package know of attribute changes from this object */
+        /* var the top level package know of attribute changes from this object */
         trickleUpChange: function () {
           MetacatUI.rootDataPackage.packageModel.set("changed", true);
         }

@@ -123,7 +123,7 @@ define(
               )
             }
             // Set missing RGB values to 0, and alpha to 1
-            let color = this.get('color');
+            var color = this.get('color');
             color.red = color.red || 0;
             color.green = color.green || 0;
             color.blue = color.blue || 0;

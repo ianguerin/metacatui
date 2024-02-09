@@ -34,7 +34,7 @@ define(["backbone", "models/metadata/eml211/EMLMissingValueCode"], function (
         const nodes = $objectDOM.filter(nodeName);
         // Loop through each missingValueCode node
         const opts = { parse: true };
-        for (let i = 0; i < nodes.length; i++) {
+        for (var i = 0; i < nodes.length; i++) {
           const node = nodes[i];
           // Create a new missingValueCode model & add it to the collection
           const attrs = { objectDOM: node };

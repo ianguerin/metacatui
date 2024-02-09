@@ -648,7 +648,7 @@ function(_, $, Backbone, SignInView, EditorSubmitMessageTemplate){
     getErrorListItem: function(error){
       try{
 
-        let errorMessage = "";
+        var errorMessage = "";
 
         //Strings get added to a list item HTML element
         if( typeof error == "string" && error.trim().length ){

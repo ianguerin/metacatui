@@ -264,8 +264,8 @@ define([
         try {
           this.stopListening(this.model);
 
-          let model = newModel;
-          let sourceModel = newModel || metadata;
+          var model = newModel;
+          var sourceModel = newModel || metadata;
           if (!model || !(model instanceof CitationModel)) {
             model = new CitationModel();
             if (!sourceModel && id) {
@@ -308,7 +308,7 @@ define([
           }
 
           // Get the attributes for the style and context
-          let styleAttrs = this.style ? this.styles[this.style] : null;
+          var styleAttrs = this.style ? this.styles[this.style] : null;
 
           // Can't render without a set style
           if (!styleAttrs) return this.clear();
@@ -321,7 +321,7 @@ define([
 
           // Get the template for this style. If object is archived & not
           // indexed, use the archived template.
-          let template = styleAttrs.template;
+          var template = styleAttrs.template;
           if (
             this.model.isArchivedAndNotIndexed() &&
             styleAttrs.archivedTemplate
@@ -333,11 +333,11 @@ define([
           if (!template) return this.clear();
 
           // Options to pass to the template
-          const options = {
+          const options = Object.assign({
             titleClass: this.titleClass,
             citationMetadataClass: this.citationMetadataClass,
-            ...this.model.toJSON(),
-          };
+
+          }, this.model.toJSON());
           if (!options.title) options.title = this.defaultTitle || "";
 
           // PANGAEA specific override. If this is a PANGAEA object, then do not
@@ -350,7 +350,7 @@ define([
           }
 
           // Find the render method to use that is in the style definition
-          let renderMethod = styleAttrs.render;
+          var renderMethod = styleAttrs.render;
 
           // Run the render method, if it exists
           if (typeof renderMethod == "function") {
@@ -397,7 +397,7 @@ define([
        * display all authors.
        * @since 2.23.0
        */
-      renderAPA: function (options, template, maxAuthors=20) {
+      renderAPA: function (options, template, maxAuthors = 20) {
         // Format the authors for display
         options.origin = this.CSLNamesToAPA(options.originArray, maxAuthors);
         this.el.innerHTML = template(options);
@@ -516,7 +516,7 @@ define([
        * display all authors.
        * @since 2.23.0
        */
-      CSLNamesToAPA: function (authors, maxAuthors=20) {
+      CSLNamesToAPA: function (authors, maxAuthors = 20) {
         // Format authors as a proper APA style citation:
         if (!authors) return "";
 
@@ -571,7 +571,7 @@ define([
         // Literal is the organization or position name
         if (!family && !given) return literal || "";
 
-        let familyName = family;
+        var familyName = family;
         // If there is a non-dropping-particle, add it to the family name
         familyName =
           family && nonDropPart ? `${nonDropPart} ${family}` : family;
@@ -613,7 +613,7 @@ define([
         // name, or literal
         const authorStr = authors.map((a) => {
           const { family, literal, "non-dropping-particle": ndp } = a;
-          let name = family;
+          var name = family;
           name = family && ndp ? `${ndp} ${family}` : family;
           return name || literal;
         });
@@ -633,7 +633,7 @@ define([
       CSLNameToFullNameStr: function (author) {
         if (!author) return "";
         const { given, family, literal, "non-dropping-particle": ndp } = author;
-        let name = family;
+        var name = family;
         name = family && ndp ? `${ndp} ${family}` : family;
         name = name && given ? `${given} ${name}` : name;
         return name || literal;

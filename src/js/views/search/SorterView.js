@@ -67,10 +67,10 @@ define(["backbone"], function (Backbone) {
         this.stopListening(this.searchResults, "error reset");
         this.listenTo(this.searchResults, "error reset", this.hideIfNoResults);
 
-        let select = document.createElement("select");
+        var select = document.createElement("select");
         select.setAttribute("id", "sortOrder");
 
-        for (let opt of this.sortOptions) {
+        for (var opt of this.sortOptions) {
           select.insertAdjacentHTML(
             "beforeend",
             `<option value="${opt.value}">${opt.label}</option>`

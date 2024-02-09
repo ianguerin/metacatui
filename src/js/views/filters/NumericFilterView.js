@@ -179,7 +179,7 @@ define(['jquery', 'underscore', 'backbone',
       }
 
       //Track this event
-      MetacatUI.analytics?.trackEvent("portal search", "filter, Data Year", minVal + " to " + maxVal);
+      MetacatUI.analytics.trackEvent("portal search", "filter, Data Year", minVal + " to " + maxVal);
 
     },
 

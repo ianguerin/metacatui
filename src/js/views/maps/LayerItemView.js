@@ -438,7 +438,7 @@ define(
             this.labelEl.append(this.statusIcon)
 
             // Show a tooltip with the error message
-            let fullMessage = this.errorMessage
+            var fullMessage = this.errorMessage
             if (message) {
               fullMessage = fullMessage + ' Error details: ' + message
             }

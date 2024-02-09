@@ -487,7 +487,7 @@ define(["jquery", "underscore", "backbone", "uuid",
                 }
                 
                 // Validate the missing value codes
-                var missingValueCodesErrors = this.get("missingValueCodes")?.validate();
+                var missingValueCodesErrors = this.get("missingValueCodes").validate();
                 if (missingValueCodesErrors) {
                     // Just display the first error message
                     errors.missingValueCodes = Object.values(missingValueCodesErrors)[0]
@@ -545,7 +545,7 @@ define(["jquery", "underscore", "backbone", "uuid",
 
             },
 
-            /* Let the top level package know of attribute changes from this object */
+            /* var the top level package know of attribute changes from this object */
             trickleUpChange: function(){
                 MetacatUI.rootDataPackage.packageModel.set("changed", true);
             },

@@ -294,7 +294,7 @@ define([
         // Get all of the field keys
         const fields = Object.keys(errorObj);
         // Get all of the error messages (values). Remove duplicates.
-        let errorMessages = [...new Set(Object.values(errorObj))];
+        var errorMessages = [...new Set(Object.values(errorObj))];
         // Join the error messages into a single string
         errorMessages = errorMessages.join(" ");
 

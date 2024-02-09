@@ -298,8 +298,8 @@ define([
           return;
         }
         const time = view.clock.currentTime;
-        let displayReady = true;
-        for (let i = 0; i < dataSources.length; i++) {
+        var displayReady = true;
+        for (var i = 0; i < dataSources.length; i++) {
           const dataSource = dataSources.get(i);
           dataSource.update(view.clock.currentTime);
           // for each visualizer, update it
@@ -519,7 +519,7 @@ define([
         const view = this;
         const pickRay = view.camera.getPickRay(position);
         const cartesian = view.scene.globe.pick(pickRay, view.scene);
-        let newPosition = null;
+        var newPosition = null;
         if (cartesian) {
           newPosition = view.getDegreesFromCartesian(cartesian);
           newPosition.mapWidgetCoords = cartesian;
@@ -563,7 +563,7 @@ define([
        */
       updateCursor: function (hoveredFeatures) {
         const view = this;
-        let cursorStyle = "default";
+        var cursorStyle = "default";
         if (hoveredFeatures && hoveredFeatures.length) {
           cursorStyle = "pointer";
         }
@@ -795,7 +795,7 @@ define([
         // Return a promise that resolves to bounding box when it's ready.
         // Keep running getBS at intervals until it's ready.
         return new Promise(function (resolve, reject) {
-          let attempts = 0;
+          var attempts = 0;
           const maxAttempts = 100;
           const interval = setInterval(function () {
             attempts++;
@@ -831,7 +831,7 @@ define([
        */
       getEntityById: function (id, collection) {
         const entities = collection.values;
-        for (let i = 0; i < entities.length; i++) {
+        for (var i = 0; i < entities.length; i++) {
           const entity = entities[i];
           if (entity.id === id) {
             return entity;
@@ -946,7 +946,7 @@ define([
         const height = camera.positionCartographic.height;
 
         // This will be the bounding box of the visible area
-        let coords = {
+        var coords = {
           north: null,
           south: null,
           east: null,
@@ -981,7 +981,7 @@ define([
           // Get the midPoint between the top and bottom points on the globe.
           // Use this to decide if the northern or southern hemisphere is more
           // in view.
-          let midPoint = view.findMidpoint(edges.top, edges.bottom);
+          var midPoint = view.findMidpoint(edges.top, edges.bottom);
           if (midPoint) {
             // Get the latitude of the mid point
             const midPointLat = view.getDegreesFromCartesian(midPoint).latitude;
@@ -1142,15 +1142,15 @@ define([
             return null;
           }
           // Compute vector from p1 to p2
-          let p1p2 = new Cesium.Cartesian3(0.0, 0.0, 0.0);
+          var p1p2 = new Cesium.Cartesian3(0.0, 0.0, 0.0);
           Cesium.Cartesian3.subtract(p2, p1, p1p2);
 
           // Compute vector to midpoint
-          let halfp1p2 = new Cesium.Cartesian3(0.0, 0.0, 0.0);
+          var halfp1p2 = new Cesium.Cartesian3(0.0, 0.0, 0.0);
           Cesium.Cartesian3.multiplyByScalar(p1p2, 0.5, halfp1p2);
 
           // Compute point half way between p1 and p2
-          let p3 = new Cesium.Cartesian3(0.0, 0.0, 0.0);
+          var p3 = new Cesium.Cartesian3(0.0, 0.0, 0.0);
           p3 = Cesium.Cartesian3.add(p1, halfp1p2, p3);
 
           // Force point onto surface of ellipsoid
@@ -1195,11 +1195,11 @@ define([
           return null;
         }
 
-        let coordinate = camera.pickEllipsoid(startCoordinates, ellipsoid);
+        var coordinate = camera.pickEllipsoid(startCoordinates, ellipsoid);
 
         // Translate coordinates
-        let x1 = startCoordinates.x;
-        let y1 = startCoordinates.y;
+        var x1 = startCoordinates.x;
+        var y1 = startCoordinates.y;
         const x2 = endCoordinates.x;
         const y2 = endCoordinates.y;
         // Define differences and error check
@@ -1207,7 +1207,7 @@ define([
         const dy = Math.abs(y2 - y1);
         const sx = x1 < x2 ? 1 : -1;
         const sy = y1 < y2 ? 1 : -1;
-        let err = dx - dy;
+        var err = dx - dy;
 
         coordinate = camera.pickEllipsoid({ x: x1, y: y1 }, ellipsoid);
         if (coordinate) {
@@ -1243,7 +1243,7 @@ define([
       updateScale: function () {
         try {
           const view = this;
-          let currentScale = {
+          var currentScale = {
             pixels: null,
             meters: null,
           };
@@ -1365,7 +1365,7 @@ define([
           // The asset should be visible and the cesium model should be ready
           // before starting to render the asset
           const checkAndRenderAsset = function () {
-            let shouldRender =
+            var shouldRender =
               mapAsset.get("visible") && mapAsset.get("status") === "ready";
             if (shouldRender) {
               renderFunction.call(view, mapAsset.get("cesiumModel"));
@@ -1407,7 +1407,7 @@ define([
           option
         ) {
           return option.types.includes(mapAsset.get("type"));
-        })?.removeFunction;
+        }).removeFunction;
         const removeFunction = this[removeFunctionName];
         // If there is a function for this type of asset, call it
         if (removeFunction && typeof removeFunction === "function") {
@@ -1517,7 +1517,7 @@ define([
 
           // If there are more than one imagery layer, arrange them in the order
           // that they were added to the map
-          for (let i = 0; i < imageryModels.length; i++) {
+          for (var i = 0; i < imageryModels.length; i++) {
             const cesiumModel = imageryModels[i].get("cesiumModel");
             if (cesiumModel) {
               if (imageryInMap.contains(cesiumModel)) {

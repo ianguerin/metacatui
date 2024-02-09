@@ -160,7 +160,7 @@ define([
        */
       addResultModel: function (searchResult) {
         try {
-          let view = this.createSearchResultView();
+          var view = this.createSearchResultView();
           view.model = searchResult;
           this.addResultView(view);
         } catch (e) {
@@ -258,11 +258,11 @@ define([
       loading: function () {
         this.empty();
 
-        let rows = this.searchResults.rows,
+        var rows = this.searchResults.rows,
           i = 0;
 
         while (i < rows) {
-          let view = this.createSearchResultView();
+          var view = this.createSearchResultView();
           this.addResultView(view);
           view.loading();
           i++;

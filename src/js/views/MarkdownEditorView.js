@@ -490,7 +490,7 @@ function(_, $, Backbone, Woofmark, EMLText, ImageUploader, MarkdownView, TableEd
       var endSel = startSel + chunks.selection.length + 1;
       var tableRE = /((\|[^|\r\n]*)+\|(\r?\n|\r)?)+((?:\s*\|\s*:?\s*[-=]+\s*:?\s*)+\|)(\n\s*(?:\|[^\n]+\|\r?\n?)*)?$/gm;
       // The regular expression used by showdown to detect tables:
-      // var tableRE = /^ {0,3}\|?.+\|.+\n {0,3}\|?[ \t]*:?[ \t]*(?:[-=]){2,}[ \t]*:?[ \t]*\|[ \t]*:?[ \t]*(?:[-=]){2,}[\s\S]+?(?:\n\n|¨0)/gm;
+      // var tableRE = /^ {0,3}\|.+\|.+\n {0,3}\|?[ \t]*:?[ \t]*(?:[-=]){2,}[ \t]*:?[ \t]*\|[ \t]*:?[ \t]*(?:[-=]){2,}[\s\S]+?(?:\n\n|¨0)/gm;
       var tables = markdown.match(tableRE);
       var tableString = "";
       while((match = tableRE.exec(markdown)) !== null) {

@@ -212,8 +212,8 @@ define(["jquery",
                 // If some are configured...
                 if(defaultImageIds && defaultImageIds.length){
                   // ...Shuffle the images...
-                  for (let i = defaultImageIds.length - 1; i > 0; i--) {
-                    let j = Math.floor(Math.random() * (i + 1));
+                  for (var i = defaultImageIds.length - 1; i > 0; i--) {
+                    var j = Math.floor(Math.random() * (i + 1));
                     [defaultImageIds[i], defaultImageIds[j]] = [defaultImageIds[j], defaultImageIds[i]];
                   }
                   // ... and save the shuffled list to the portal model

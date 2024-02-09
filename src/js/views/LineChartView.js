@@ -330,14 +330,14 @@ define(['jquery', 'underscore', 'backbone', 'd3'],
 				  labels.append("rect")
 				  		.attr("x", function(d, i){
 				  			var xPos = viewRef.x(d.date) - (labelWidth/2);
-					  		//Don't let our label bleed off the edge
+					  		//Don't var our label bleed off the edge
 					  		if(xPos < 0) xPos = xPos + labelWidth;
 
 					  		return  xPos;
 					  	})
 					  	.attr("y", function(d, i){
 					  		var yPos = viewRef.y(d.count) + viewRef.radius;
-					  		//Don't let our label bleed off the edge
+					  		//Don't var our label bleed off the edge
 					  		if(yPos < (viewRef.margin.top * -1)) yPos = yPos + labelHeight;
 					  		else if(yPos > (viewRef.height - labelHeight)) yPos = yPos - labelHeight;
 
@@ -390,13 +390,13 @@ define(['jquery', 'underscore', 'backbone', 'd3'],
 				  		})
 				  		.attr("x", function(d, i){
 				  			var xPos = viewRef.x(d.date) - (labelWidth/2);
-				  			//Don't let our label bleed off the edge
+				  			//Don't var our label bleed off the edge
 					  		if(xPos < 0) xPos = xPos + labelWidth;
 
 					  		return  xPos + labelXPadding; })
 					  	.attr("y", function(d, i){
 					  		var yPos = viewRef.y(d.count) + viewRef.radius;
-					  		//Don't let our label bleed off the edge
+					  		//Don't var our label bleed off the edge
 					  		if(yPos < 0) yPos = yPos + labelHeight;
 					  		else if(yPos > (viewRef.height - labelHeight)) yPos = yPos - labelHeight;
 
@@ -412,13 +412,13 @@ define(['jquery', 'underscore', 'backbone', 'd3'],
 				  		})
 				  		.attr("x", function(d, i){
 				  			var xPos = viewRef.x(d.date) - (labelWidth/2);
-				  			//Don't let our label bleed off the edge
+				  			//Don't var our label bleed off the edge
 					  		if(xPos < 0) xPos = xPos + labelWidth;
 
 					  		return  xPos + labelXPadding; })
 					  	.attr("y", function(d, i){
 					  		var yPos = viewRef.y(d.count) + viewRef.radius;
-					  		//Don't let our label bleed off the edge
+					  		//Don't var our label bleed off the edge
 					  		if(yPos < 0) yPos = yPos + labelHeight;
 					  		else if(yPos > (viewRef.height - labelHeight)) yPos = yPos - labelHeight;
 

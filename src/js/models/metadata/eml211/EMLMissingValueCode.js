@@ -48,12 +48,12 @@ define(["backbone"], function (Backbone) {
        * @return {string} The XML string
        */
       serialize: function () {
-        let xml = this.updateDOM().outerHTML;
+        var xml = this.updateDOM().outerHTML;
         const elNames = this.get("nodeOrder");
         elNames.push(this.get("type"));
         // replace lowercase node names with camelCase
         elNames.forEach((elName) => {
-          let elNameLower = elName.toLowerCase();
+          var elNameLower = elName.toLowerCase();
           xml = xml.replace(`<${elNameLower}>`, `<${elName}>`);
           xml = xml.replace(`</${elNameLower}>`, `</${elName}>`);
         });
@@ -78,7 +78,7 @@ define(["backbone"], function (Backbone) {
           // Remove any existing nodes
           $objectDOM.children(nodeName.toLowerCase()).remove();
 
-          const newValue = this.get(nodeName)?.trim();
+          const newValue = this.get(nodeName).trim();
 
           // Add the new node
           if (newValue) {
@@ -113,8 +113,8 @@ define(["backbone"], function (Backbone) {
         const errors = {};
 
         // Need a code and an explanation. Both must be non-empty strings.
-        let code = this.get("code")?.trim();
-        let codeExplanation = this.get("codeExplanation")?.trim();
+        var code = this.get("code").trim();
+        var codeExplanation = this.get("codeExplanation").trim();
 
         this.set("code", code);
         this.set("codeExplanation", codeExplanation);

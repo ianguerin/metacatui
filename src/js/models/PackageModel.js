@@ -1270,7 +1270,7 @@ define(['jquery', 'underscore', 'backbone', 'uuid', 'md5', 'rdflib', 'models/Sol
 			   }
 
           // Track this event
-          MetacatUI.analytics?.trackEvent("download", "Download Package", model.get("id"))
+          MetacatUI.analytics.trackEvent("download", "Download Package", model.get("id"))
 
 			    model.trigger("downloadComplete");
 			};
@@ -1286,7 +1286,7 @@ define(['jquery', 'underscore', 'backbone', 'uuid', 'md5', 'rdflib', 'models/Sol
 				model.trigger("downloadError");
 
 				// Track this event
-				MetacatUI.analytics?.trackEvent(
+				MetacatUI.analytics.trackEvent(
 					"download",
 					"Download Package",
 					model.get("id")

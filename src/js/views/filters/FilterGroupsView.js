@@ -931,7 +931,7 @@ define(['jquery', 'underscore', 'backbone',
     */
     removeAllFilters: function(){
 
-      let removedFilters = [];
+      var removedFilters = [];
 
       //Iterate over each applied filter in the view
       _.each( this.$(".applied-filter"), function(appliedFilterEl){

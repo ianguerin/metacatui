@@ -235,7 +235,7 @@ define(["jquery", "underscore", "backbone", "models/SolrResult", "collections/Fi
             addFilters: function(filters){
               try{
 
-                let currentFilters = this.get("filters");
+                var currentFilters = this.get("filters");
 
                 //If the passed collection is the same as the one set already, return
                 if( currentFilters == filters )

@@ -159,8 +159,8 @@ define(["jquery", "underscore", "backbone", "models/DataONEObject"], function (
        */
       serialize: function () {
         const objectDOM = this.updateDOM();
-        let xmlString = objectDOM?.outerHTML;
-        if (!xmlString) xmlString = objectDOM?.[0]?.outerHTML;
+        var xmlString = objectDOM.outerHTML;
+        if (!xmlString) xmlString = objectDOM[0].outerHTML;
 
         //Camel-case the XML
         xmlString = this.formatXML(xmlString);

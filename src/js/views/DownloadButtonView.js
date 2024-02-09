@@ -94,7 +94,7 @@ define(['jquery', 'underscore', 'backbone', 'models/SolrResult'],
         return;
       }
 
-      //If the user isn't logged in, let the browser handle the download normally
+      //If the user isn't logged in, var the browser handle the download normally
       if( MetacatUI.appUserModel.get("tokenChecked") && !MetacatUI.appUserModel.get("loggedIn") ){
         return;
       }

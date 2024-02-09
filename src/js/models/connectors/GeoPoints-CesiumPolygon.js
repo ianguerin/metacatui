@@ -35,11 +35,11 @@ define(["cesium", "models/connectors/GeoPoints-Cesium"], function (
        * vertices created from the points in the collection.
        */
       defaults: function () {
-        return {
-          // extend the defaults from the parent class
-          ...GeoPointsCesiumConnector.prototype.defaults(),
+        return Object.assign({
           polygon: null,
-        };
+        }, 
+          // extend the defaults from the parent class
+          GeoPointsCesiumConnector.prototype.defaults());
       },
 
       /**

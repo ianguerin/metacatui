@@ -104,7 +104,7 @@ define(['underscore', 'jquery', 'backbone', 'models/DataONEObject',
                 // Note: .canWrite is set here (at render) instead of at init
                 // because render will get called a few times during page load
                 // as the app updates what it knows about the object
-                let accessPolicy = this.model.get("accessPolicy");
+                var accessPolicy = this.model.get("accessPolicy");
                 if( accessPolicy ){
                   attributes.canWrite  = accessPolicy.isAuthorized("write");
                   this.canWrite        = attributes.canWrite;

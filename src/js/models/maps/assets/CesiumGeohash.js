@@ -120,7 +120,7 @@ define([
        * @since 2.25.0
        */
       getPropertyOfInterest: function () {
-        return this.get("colorPalette")?.get("property");
+        return this.get("colorPalette").get("property");
       },
 
       /**
@@ -206,7 +206,7 @@ define([
        * @returns {Geohashes} The geohashes to display.
        */
       getGeohashes: function(limitToExtent = true) {
-        let geohashes = this.get("geohashes");
+        var geohashes = this.get("geohashes");
         if (limitToExtent) {
           geohashes = this.getGeohashesForExtent();
         }
@@ -219,9 +219,9 @@ define([
        * @since 2.25.0
        */
       getGeohashesForExtent: function () {
-        const bounds = this.getViewExtent()?.clone();
+        const bounds = this.getViewExtent().clone();
         if (!bounds) return this.get("geohashes");
-        return this.get("geohashes")?.getSubsetByBounds(bounds);
+        return this.get("geohashes").getSubsetByBounds(bounds);
       },
 
       /**
@@ -229,7 +229,7 @@ define([
        * @returns {GeoBoundingBox} The current map extent
        */
       getViewExtent: function () {
-        return this.get("mapModel")?.get("interactions")?.get("viewExtent")
+        return this.get("mapModel").get("interactions").get("viewExtent")
       },
 
       /**
@@ -298,7 +298,7 @@ define([
         try {
           const toSelect = [...new Set(geohashes.map((geohash) => {
             const parent = this.get("geohashes").getContainingGeohash(geohash);
-            return parent?.get("hashString");
+            return parent.get("hashString");
           }, this))];
           const entities = this.get("cesiumModel").entities.values;
           const selected = entities.filter((entity) => {

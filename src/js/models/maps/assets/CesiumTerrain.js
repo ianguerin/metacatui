@@ -120,7 +120,7 @@ define(
           cesiumOptions.url = this.getCesiumURL(cesiumOptions) || cesiumOptions.url;
 
           if (terrainFunction && typeof terrainFunction === 'function') {
-            let terrain = new terrainFunction(cesiumOptions)
+            var terrain = new terrainFunction(cesiumOptions)
             terrain.readyPromise
               .then(function () {
                 model.set('cesiumModel', terrain)

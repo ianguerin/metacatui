@@ -206,7 +206,7 @@ function(_, $, Backbone, PortalImage, ImageUploaderView, Template){
         }
 
         //If an alternative repo is configured, upload to that alt repo
-        let useAltRepo = MetacatUI.appModel.getActiveAltRepo()? true : false;
+        var useAltRepo = MetacatUI.appModel.getActiveAltRepo()? true : false;
         this.model.set("useAltRepo", useAltRepo);
 
       } catch (e) {

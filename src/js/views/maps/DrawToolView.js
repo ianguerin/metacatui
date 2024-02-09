@@ -233,14 +233,14 @@ define(["backbone", "models/connectors/GeoPoints-CesiumPolygon", "models/connect
        * @returns {GeoPoint} The GeoPoint model that was added to the polygon.
        */
       addPoint: function (point) {
-        return this.points?.addPoint(point);
+        return this.points.addPoint(point);
       },
 
       /**
        * Clears the polygon that is being drawn.
        */
       clearPoints: function () {
-        this.points?.reset(null);
+        this.points.reset(null);
       },
 
       /**

@@ -669,7 +669,7 @@ define(['jquery', 'underscore', 'backbone', 'uuid', 'he', 'collections/AccessPol
                       model.trigger("errorSaving", parsedResponse);
 
                       // Track this error in our analytics
-                      MetacatUI.analytics?.trackException(
+                      MetacatUI.analytics.trackException(
                         `DataONEObject save error: ${parsedResponse}`,
                         model.get("id"),
                         true
@@ -819,7 +819,7 @@ define(['jquery', 'underscore', 'backbone', 'uuid', 'he', 'collections/AccessPol
                         model.trigger("sysMetaUpdateError");
 
                         // Track this error in our analytics
-                        MetacatUI.analytics?.trackException(
+                        MetacatUI.analytics.trackException(
                           `DataONEObject update system metadata ` +
                             `error: ${parsedResponse}`,
                           model.get("id"),
@@ -943,7 +943,7 @@ define(['jquery', 'underscore', 'backbone', 'uuid', 'he', 'collections/AccessPol
 
               // Track this error in our analytics
               const name = MetacatUI.appModel.get('username')
-              MetacatUI.analytics?.trackException(
+              MetacatUI.analytics.trackException(
                 `Couldn't check the authority for the user ${name}: ${e}`,
                 this.get("id"),
                 true
@@ -1241,9 +1241,9 @@ define(['jquery', 'underscore', 'backbone', 'uuid', 'he', 'collections/AccessPol
               try{
                 //If the app is configured to inherit the access policy from the parent metadata,
                 // then get the parent metadata and copy it's AccessPolicy
-                let scienceMetadata = this.get("isDocumentedByModels");
+                var scienceMetadata = this.get("isDocumentedByModels");
                 if( MetacatUI.appModel.get("inheritAccessPolicy") && scienceMetadata && scienceMetadata.length ){
-                  let sciMetaAccessPolicy = scienceMetadata[0].get("accessPolicy");
+                  var sciMetaAccessPolicy = scienceMetadata[0].get("accessPolicy");
 
                   if( sciMetaAccessPolicy ){
                     accessPolicy.copyAccessPolicy(sciMetaAccessPolicy);
@@ -1825,7 +1825,7 @@ define(['jquery', 'underscore', 'backbone', 'uuid', 'he', 'collections/AccessPol
           getCanonicalDOIIRI: function () {
             const id = this.get("id");
             const seriesId = this.get("seriesId");
-            let DOI = null;
+            var DOI = null;
             if (this.isDOI(seriesId)) DOI = seriesId;
             else if (this.isDOI(id)) DOI = id;
             return MetacatUI.appModel.DOItoURL(DOI);
@@ -2215,7 +2215,7 @@ define(['jquery', 'underscore', 'backbone', 'uuid', 'he', 'collections/AccessPol
             json.resourceMap = json.resourceMap.trim();
           }
           else if( Array.isArray(json.resourceMap) ){
-            let newResourceMapIds = [];
+            var newResourceMapIds = [];
             _.each(json.resourceMap, function(rMapId){
               if( typeof rMapId == "string" ){
                 newResourceMapIds.push(rMapId.trim());

@@ -69,7 +69,7 @@ define(['jquery',
 
 					try {
 
-						if (!data?.response?.numFound) {
+						if (!data.response.numFound) {
 
 							if (view.parentView && view.parentView.model) {
 

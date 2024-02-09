@@ -242,7 +242,7 @@ define([
        */
       updateModelFromInput: function (attr) {
         if (!this.model) return;
-        const newVal = this[`${attr}Input`]?.value;
+        const newVal = this[`${attr}Input`].value;
         this.model.set(attr, newVal);
         return newVal;
       },

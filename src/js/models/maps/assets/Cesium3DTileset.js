@@ -124,7 +124,7 @@ define(
 
             const model = this;
             const cesiumOptions = this.getCesiumOptions();
-            let cesiumModel = null
+            var cesiumModel = null
 
             if (!cesiumOptions) {
               model.set('status', 'error');
@@ -141,7 +141,7 @@ define(
             model.set('cesiumModel', cesiumModel)
             cesiumModel.readyPromise
               .then(function () {
-                // Let the map views know that the tileset is ready to render
+                // var the map views know that the tileset is ready to render
                 model.set('status', 'ready');
                 // Listen to changes in the opacity, color, etc
                 model.setListeners();
@@ -150,7 +150,7 @@ define(
               })
               .otherwise(function (error) {
                 // See https://cesium.com/learn/cesiumjs/ref-doc/RequestErrorEvent.html
-                let details = error;
+                var details = error;
                 // Write a helpful error message
                 switch (error.statusCode) {
                   case 404:
@@ -255,7 +255,7 @@ define(
                 model.set('visible', false);
               }
 
-              // Let the map and/or other parent views know that a change has been made
+              // var the map and/or other parent views know that a change has been made
               // that requires the map to be re-rendered
               model.trigger('appearanceChanged')
             } else {
@@ -323,7 +323,7 @@ define(
          */
         getPropertiesFromFeature: function(feature) {
           if (!this.usesFeatureType(feature)) return null
-          let properties = {};
+          var properties = {};
           feature.getPropertyNames().forEach(function (propertyName) {
             properties[propertyName] = feature.getProperty(propertyName)
           })
@@ -381,7 +381,7 @@ define(
 
             const evaluateColor = function (feature) {
               const properties = model.getPropertiesFromFeature(feature);
-              let featureOpacity = opacity;
+              var featureOpacity = opacity;
               // If the feature is currently selected, set the opacity to max (otherwise the
               // 'silhouette' borders in the map do not show in the Cesium widget)
               if (model.featureIsSelected(feature)) {

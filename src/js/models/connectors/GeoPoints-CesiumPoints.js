@@ -35,11 +35,11 @@ define(["cesium", "models/connectors/GeoPoints-Cesium"], function (
        * been added to the layer.
        */
       defaults: function () {
-        return {
-          // extend the defaults from the parent class
-          ...GeoPointsCesiumConnector.prototype.defaults(),
+        return Object.assign({
           layerPoints: [],
-        };
+        },
+          // extend the defaults from the parent class
+          GeoPointsCesiumConnector.prototype.defaults());
       },
 
       /**
@@ -51,7 +51,7 @@ define(["cesium", "models/connectors/GeoPoints-Cesium"], function (
       handleCollectionChange(eventName, collection, options) {
         try {
           // For merges and resets, just remove all points and re-add them
-          if (!options?.add && !options?.remove) {
+          if (!options.add && !options.remove) {
             this.resetLayerPoints();
             return;
           }

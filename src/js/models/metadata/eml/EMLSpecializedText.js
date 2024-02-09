@@ -41,15 +41,15 @@ define(['jquery', 'underscore', 'backbone', 'models/metadata/eml220/EMLText'],
           var objectDOM = this.get("objectDOM").cloneNode(true);
 
         //Use the parent EMLText model parse() method
-        let parsedAttributes = EMLText.prototype.parse.call(this, objectDOM);
+        var parsedAttributes = EMLText.prototype.parse.call(this, objectDOM);
 
         try{
           //Find all of the title nodes inside each section
-          let titleNodes = $(objectDOM).children("section").children("title");
+          var titleNodes = $(objectDOM).children("section").children("title");
 
           //Get the title text from the first title node
           if( titleNodes.length ){
-            let firstTitleNode = titleNodes[0];
+            var firstTitleNode = titleNodes[0];
             if( firstTitleNode ){
               //Save the title to the model attributes
               parsedAttributes.title = firstTitleNode.text;
@@ -88,8 +88,8 @@ define(['jquery', 'underscore', 'backbone', 'models/metadata/eml220/EMLText'],
       try{
 
         //First update the DOM using the inherited updateDOM() method
-        let updatedDOM = EMLText.prototype.updateDOM.call(this);
-        let title = this.get("title");
+        var updatedDOM = EMLText.prototype.updateDOM.call(this);
+        var title = this.get("title");
 
         if(this.get("markdown")){
           /** @todo Support EMLSpecializedText for Markdown */
@@ -97,11 +97,11 @@ define(['jquery', 'underscore', 'backbone', 'models/metadata/eml220/EMLText'],
         else if( updatedDOM && title ){
 
           //Get the section element
-          let sectionEl = $(updatedDOM).children("section");
+          var sectionEl = $(updatedDOM).children("section");
 
           //If there isn't a selection Element, create one and wrap it around the paras
           if( !sectionEl.length ){
-            let allParas = $(updatedDOM).find("para");
+            var allParas = $(updatedDOM).find("para");
             allParas.wrapAll("<section />");
             sectionEl = $(updatedDOM).children("section");
           }
@@ -109,11 +109,11 @@ define(['jquery', 'underscore', 'backbone', 'models/metadata/eml220/EMLText'],
           //Find the most up-to-date title from the AppConfig.
           //The first title in the list gets used. All other titles in the list are
           // considered legacy/alternative titles that may have been used in the past.
-          let titleOptions = this.get("titleOptions");
+          var titleOptions = this.get("titleOptions");
           title = titleOptions.length? titleOptions[0] : title;
 
           //Get the title of the first section
-          let titleEl = sectionEl.children("title");
+          var titleEl = sectionEl.children("title");
           //If there isn't a title, create one
           if( !titleEl.length ){
             titleEl = $(document.createElement("title")).text(title);

@@ -83,13 +83,13 @@ if (!Array.prototype.map) {
       throw new TypeError(" this is null or not defined");
     }
 
-    // 1. Let O be the result of calling ToObject passing the |this|
+    // 1. var O be the result of calling ToObject passing the |this|
     //    value as the argument.
     var O = Object(this);
 
-    // 2. Let lenValue be the result of calling the Get internal
+    // 2. var lenValue be the result of calling the Get internal
     //    method of O with the argument "length".
-    // 3. Let len be ToUint32(lenValue).
+    // 3. var len be ToUint32(lenValue).
     var len = O.length >>> 0;
 
     // 4. If IsCallable(callback) is false, throw a TypeError exception.
@@ -98,17 +98,17 @@ if (!Array.prototype.map) {
       throw new TypeError(callback + " is not a function");
     }
 
-    // 5. If thisArg was supplied, let T be thisArg; else let T be undefined.
+    // 5. If thisArg was supplied, var T be thisArg; else var T be undefined.
     if (arguments.length > 1) {
       T = thisArg;
     }
 
-    // 6. Let A be a new array created as if by the expression new Array(len)
+    // 6. var A be a new array created as if by the expression new Array(len)
     //    where Array is the standard built-in constructor with that name and
     //    len is the value of len.
     A = new Array(len);
 
-    // 7. Let k be 0
+    // 7. var k be 0
     k = 0;
 
     // 8. Repeat, while k < len
@@ -116,19 +116,19 @@ if (!Array.prototype.map) {
 
       var kValue, mappedValue;
 
-      // a. Let Pk be ToString(k).
+      // a. var Pk be ToString(k).
       //   This is implicit for LHS operands of the in operator
-      // b. Let kPresent be the result of calling the HasProperty internal
+      // b. var kPresent be the result of calling the HasProperty internal
       //    method of O with argument Pk.
       //   This step can be combined with c
       // c. If kPresent is true, then
       if (k in O) {
 
-        // i. Let kValue be the result of calling the Get internal
+        // i. var kValue be the result of calling the Get internal
         //    method of O with argument Pk.
         kValue = O[k];
 
-        // ii. Let mappedValue be the result of calling the Call internal
+        // ii. var mappedValue be the result of calling the Call internal
         //     method of callback with T as the this value and argument
         //     list containing kValue, k, and O.
         mappedValue = callback.call(T, kValue, k, O);
@@ -177,11 +177,11 @@ if (!Array.prototype.forEach) {
       throw new TypeError(' this is null or not defined');
     }
 
-    // 1. Let O be the result of calling ToObject passing the |this| value as the argument.
+    // 1. var O be the result of calling ToObject passing the |this| value as the argument.
     var O = Object(this);
 
-    // 2. Let lenValue be the result of calling the Get internal method of O with the argument "length".
-    // 3. Let len be ToUint32(lenValue).
+    // 2. var lenValue be the result of calling the Get internal method of O with the argument "length".
+    // 3. var len be ToUint32(lenValue).
     var len = O.length >>> 0;
 
     // 4. If IsCallable(callback) is false, throw a TypeError exception.
@@ -190,12 +190,12 @@ if (!Array.prototype.forEach) {
       throw new TypeError(callback + ' is not a function');
     }
 
-    // 5. If thisArg was supplied, let T be thisArg; else let T be undefined.
+    // 5. If thisArg was supplied, var T be thisArg; else var T be undefined.
     if (arguments.length > 1) {
       T = thisArg;
     }
 
-    // 6. Let k be 0
+    // 6. var k be 0
     k = 0;
 
     // 7. Repeat, while k < len
@@ -203,14 +203,14 @@ if (!Array.prototype.forEach) {
 
       var kValue;
 
-      // a. Let Pk be ToString(k).
+      // a. var Pk be ToString(k).
       //   This is implicit for LHS operands of the in operator
-      // b. Let kPresent be the result of calling the HasProperty internal method of O with argument Pk.
+      // b. var kPresent be the result of calling the HasProperty internal method of O with argument Pk.
       //   This step can be combined with c
       // c. If kPresent is true, then
       if (k in O) {
 
-        // i. Let kValue be the result of calling the Get internal method of O with argument Pk.
+        // i. var kValue be the result of calling the Get internal method of O with argument Pk.
         kValue = O[k];
 
         // ii. Call the Call internal method of callback with T as the this value and
@@ -283,7 +283,7 @@ if (!Array.prototype.indexOf) {
 
     var k;
 
-    // 1. Let o be the result of calling ToObject passing
+    // 1. var o be the result of calling ToObject passing
     //    the this value as the argument.
     if (this == null) {
       throw new TypeError('"this" is null or not defined');
@@ -291,9 +291,9 @@ if (!Array.prototype.indexOf) {
 
     var o = Object(this);
 
-    // 2. Let lenValue be the result of calling the Get
+    // 2. var lenValue be the result of calling the Get
     //    internal method of o with the argument "length".
-    // 3. Let len be ToUint32(lenValue).
+    // 3. var len be ToUint32(lenValue).
     var len = o.length >>> 0;
 
     // 4. If len is 0, return -1.
@@ -301,8 +301,8 @@ if (!Array.prototype.indexOf) {
       return -1;
     }
 
-    // 5. If argument fromIndex was passed let n be
-    //    ToInteger(fromIndex); else let n be 0.
+    // 5. If argument fromIndex was passed var n be
+    //    ToInteger(fromIndex); else var n be 0.
     var n = fromIndex | 0;
 
     // 6. If n >= len, return -1.
@@ -310,22 +310,22 @@ if (!Array.prototype.indexOf) {
       return -1;
     }
 
-    // 7. If n >= 0, then Let k be n.
-    // 8. Else, n<0, Let k be len - abs(n).
-    //    If k is less than 0, then let k be 0.
+    // 7. If n >= 0, then var k be n.
+    // 8. Else, n<0, var k be len - abs(n).
+    //    If k is less than 0, then var k be 0.
     k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
 
     // 9. Repeat, while k < len
     while (k < len) {
-      // a. Let Pk be ToString(k).
+      // a. var Pk be ToString(k).
       //   This is implicit for LHS operands of the in operator
-      // b. Let kPresent be the result of calling the
+      // b. var kPresent be the result of calling the
       //    HasProperty internal method of o with argument Pk.
       //   This step can be combined with c
       // c. If kPresent is true, then
-      //    i.  Let elementK be the result of calling the Get
+      //    i.  var elementK be the result of calling the Get
       //        internal method of o with the argument ToString(k).
-      //   ii.  Let same be the result of applying the
+      //   ii.  var same be the result of applying the
       //        Strict Equality Comparison Algorithm to
       //        searchElement and elementK.
       //  iii.  If same is true, return k.
@@ -387,14 +387,14 @@ if (typeof Object.assign != 'function') {
    Object.defineProperty(Array.prototype, 'includes', {
      value: function (searchElement, fromIndex) {
 
-       // 1. Let O be ? ToObject(this value).
+       // 1. var O be ? ToObject(this value).
        if (this == null) {
          throw new TypeError('"this" is null or not defined');
        }
 
        var o = Object(this);
 
-       // 2. Let len be ? ToLength(? Get(O, "length")).
+       // 2. var len be ? ToLength(? Get(O, "length")).
        var len = o.length >>> 0;
 
        // 3. If len is 0, return false.
@@ -402,15 +402,15 @@ if (typeof Object.assign != 'function') {
          return false;
        }
 
-       // 4. Let n be ? ToInteger(fromIndex).
+       // 4. var n be ? ToInteger(fromIndex).
        //    (If fromIndex is undefined, this step produces the value 0.)
        var n = fromIndex | 0;
 
        // 5. If n ≥ 0, then
-       //  a. Let k be n.
+       //  a. var k be n.
        // 6. Else n < 0,
-       //  a. Let k be len + n.
-       //  b. If k < 0, let k be 0.
+       //  a. var k be len + n.
+       //  b. If k < 0, var k be 0.
        var k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
 
        function sameValueZero(x, y) {
@@ -419,7 +419,7 @@ if (typeof Object.assign != 'function') {
 
        // 7. Repeat, while k < len
        while (k < len) {
-         // a. Let elementK be the result of ? Get(O, ! ToString(k)).
+         // a. var elementK be the result of ? Get(O, ! ToString(k)).
          // b. If SameValueZero(searchElement, elementK) is true, return true.
          // c. Increase k by 1.
          if (sameValueZero(o[k], searchElement)) {

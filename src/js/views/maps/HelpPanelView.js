@@ -108,7 +108,7 @@ define(["backbone", "text!templates/maps/cesium-nav-help.html"], function (
       render: function () {
         const view = this;
 
-        let sections = JSON.parse(JSON.stringify(view.sections));
+        var sections = JSON.parse(JSON.stringify(view.sections));
 
         if (view.showFeedback === false) {
           sections = sections.filter((section) => {

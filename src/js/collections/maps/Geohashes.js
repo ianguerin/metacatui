@@ -37,7 +37,7 @@ define([
        * @returns {number} Length of the geohash.
        */
       comparator: function (model) {
-        return model.get("hashString")?.length || 0;
+        return model.get("hashString").length || 0;
       },
 
       /**
@@ -52,8 +52,8 @@ define([
       initialize: function (models, options) {
         // Set the absolute min and max precision levels. Min should not be
         // lower than 1. Max must be greater than or equal to min.
-        this.MAX_PRECISION = options?.maxPrecision || 9;
-        this.MIN_PRECISION = options?.minPrecision || 1;
+        this.MAX_PRECISION = options.maxPrecision || 9;
+        this.MIN_PRECISION = options.minPrecision || 1;
         if (this.MIN_PRECISION < 1) this.MIN_PRECISION = 1;
         if (this.MAX_PRECISION < this.MIN_PRECISION) {
           this.MAX_PRECISION = this.MIN_PRECISION;
@@ -135,7 +135,7 @@ define([
         if (!bounds.isValid()) {
           throw new Error("Bounds are invalid");
         }
-        let hashStrings = [];
+        var hashStrings = [];
         bounds = bounds.split();
         bounds.forEach(function (b) {
           const c = b.getCoords();
@@ -204,7 +204,7 @@ define([
         minPrecision = this.MIN_PRECISION,
         maxPrecision = this.MAX_PRECISION
       ) {
-        let hashStrings = [];
+        var hashStrings = [];
         if (consolidate) {
           hashStrings = this.getFewestHashStringsForBounds(
             bounds,
@@ -263,7 +263,7 @@ define([
         minPrecision = this.validatePrecision(minPrecision);
         maxPrecision = this.validatePrecision(maxPrecision);
         if (!this.precisionAreas) this.precisionAreas = {};
-        for (let i = minPrecision; i <= maxPrecision; i++) {
+        for (var i = minPrecision; i <= maxPrecision; i++) {
           if (!this.precisionAreas[i]) {
             this.precisionAreas[i] = this.getGeohashArea(i);
           }
@@ -297,8 +297,8 @@ define([
         const ghAreas = this.getGeohashAreas(absMin, absMax);
 
         // Start from the most precise level
-        let precision = absMax;
-        let conditionMet = false;
+        var precision = absMax;
+        var conditionMet = false;
 
         // Work down to the lowest precision level
         while (precision >= absMin) {
@@ -347,7 +347,7 @@ define([
         if (area >= ghAreas[absMin]) return absMin;
 
         // Start from the least precise level & work up
-        let precision = absMin;
+        var precision = absMin;
         while (precision < absMax) {
           if (ghAreas[precision] >= area && ghAreas[precision + 1] < area) {
             break;
@@ -447,8 +447,8 @@ define([
         // meridian, split it in two
         const allBounds = bounds.split();
         function hashPlacement(hash) {
-          let [s, w, n, e] = nGeohash.decode_bbox(hash);
-          let outside = [];
+          var [s, w, n, e] = nGeohash.decode_bbox(hash);
+          var outside = [];
           for (const b of allBounds) {
             if (bounds.boundsAreFullyContained(n, e, s, w)) {
               return "inside";
@@ -462,17 +462,17 @@ define([
         }
 
         // Start with all hashes at minPrecision
-        let precision = minPrecision;
-        let hashes = this.getHashStringsForBounds(bounds, precision);
+        var precision = minPrecision;
+        var hashes = this.getHashStringsForBounds(bounds, precision);
         const optimalSet = new Set();
 
         while (precision < maxPrecision && hashes.length > 0) {
           // If hash is part overlapping but not fully contained, check the
           // children; If hash is fully contained, it's one of the optimal
           // geohashes. Hashes fully outside the bounding box ignored.
-          let overlapHashes = [];
+          var overlapHashes = [];
           for (const hash of hashes) {
-            let placement = hashPlacement(hash);
+            var placement = hashPlacement(hash);
             if (placement == "overlap") overlapHashes.push(hash);
             else if (placement == "inside") optimalSet.add(hash);
           }
@@ -532,7 +532,7 @@ define([
           return new Geohashes();
         }
         const precisions = this.getPrecisions();
-        let hashes = [];
+        var hashes = [];
         precisions.forEach((precision) => {
           hashes = hashes.concat(
             this.getHashStringsForBounds(bounds, precision)
@@ -589,7 +589,7 @@ define([
       getCompleteGroups: function () {
         const allGroups = {};
         const completeGroups = {};
-        for (let i = 0; i < this.length; i++) {
+        for (var i = 0; i < this.length; i++) {
           const geohash = this.at(i);
           const groupID = geohash.getGroupID();
           if (groupID) {
@@ -614,14 +614,14 @@ define([
        * consolidation.
        */
       consolidate: function () {
-        let toMerge;
+        var toMerge;
 
         if (this.length <= 1) return this;
 
         do {
           toMerge = this.getCompleteGroups();
-          let toRemove = [];
-          let toAdd = [];
+          var toRemove = [];
+          var toAdd = [];
 
           Object.keys(toMerge).forEach((groupID) => {
             const parent = new Geohash({ hashString: groupID });
@@ -710,7 +710,7 @@ define([
       getContainingGeohash: function (hashString) {
         if (!hashString || hashString.length === 0) return null;
         // First check if the hashString is already in the collection
-        let geohash = this.findWhere({ hashString: hashString });
+        var geohash = this.findWhere({ hashString: hashString });
         if (geohash) return geohash;
         geohash = this.find((gh) => {
           return gh.isParentOf(hashString);

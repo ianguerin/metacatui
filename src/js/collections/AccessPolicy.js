@@ -103,13 +103,13 @@ define(["jquery", "underscore", "backbone", "models/AccessRule"],
 
             try{
 
-              let accessRules = [];
+              var accessRules = [];
 
               //For each access policy in the AppModel, create an AccessRule model
               otherAccessPolicy.each(function(accessRule){
 
                 //Convert the AccessRule model to JSON and update the reference to the DataONEObject
-                let accessRuleJSON = accessRule.toJSON();
+                var accessRuleJSON = accessRule.toJSON();
                 accessRuleJSON.dataONEObject = this.dataONEObject;
                 accessRules.push(accessRuleJSON);
 

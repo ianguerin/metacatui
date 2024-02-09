@@ -352,7 +352,7 @@ define(["jquery", "underscore", "backbone", "models/DataONEObject"], function (
       // Recursively stringify the nested classifications for comparison
       stringifyClassification = function (c) {
         const stringified = {};
-        for (let key of stringKeys) {
+        for (var key of stringKeys) {
           if (c[key]) stringified[key] = c[key];
         }
         if (c.taxonId) stringified.taxonId = c.taxonId;
@@ -386,7 +386,7 @@ define(["jquery", "underscore", "backbone", "models/DataONEObject"], function (
      */
     isDuplicate: function (classification, indexToSkip) {
       const classifications = this.get("taxonomicClassification");
-      for (let i = 0; i < classifications.length; i++) {
+      for (var i = 0; i < classifications.length; i++) {
         if (typeof indexToSkip === "number" && i === indexToSkip) continue;
         if (this.classificationsAreEqual(classifications[i], classification)) {
           return true;
@@ -407,7 +407,7 @@ define(["jquery", "underscore", "backbone", "models/DataONEObject"], function (
     removeDuplicateClassifications: function () {
       const classifications = this.get("taxonomicClassification");
       const removed = [];
-      for (let i = 0; i < classifications.length; i++) {
+      for (var i = 0; i < classifications.length; i++) {
         const classification = classifications[i];
         if (this.isDuplicate(classification, i)) {
           classifications.splice(i, 1);

@@ -521,12 +521,13 @@ function ($, _, Backbone) {
 			this.routeHistory.length = 0;
 
 			if(((typeof MetacatUI.appModel.get("tokenUrl") == "undefined") || !MetacatUI.appModel.get("tokenUrl")) && !MetacatUI.appView.registryView){
-				require(['views/RegistryView'], function(RegistryView){
-					MetacatUI.appView.registryView = new RegistryView();
-					if(MetacatUI.appView.currentView.onClose)
-						MetacatUI.appView.currentView.onClose();
-					MetacatUI.appUserModel.logout();
-				});
+				// TODO(ianguerin): what is registry view? did it ever exist?
+				// require(['views/RegistryView'], function(RegistryView){
+				// 	MetacatUI.appView.registryView = new RegistryView();
+				// 	if(MetacatUI.appView.currentView.onClose)
+				// 		MetacatUI.appView.currentView.onClose();
+				// 	MetacatUI.appUserModel.logout();
+				// });
 			}
 			else{
 				if(MetacatUI.appView.currentView && MetacatUI.appView.currentView.onClose)

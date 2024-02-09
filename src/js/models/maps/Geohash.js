@@ -81,7 +81,7 @@ define([
           this,
           "properties"
         );
-        return properties?.hasOwnProperty(key);
+        return properties.hasOwnProperty(key);
       },
 
       /**
@@ -155,7 +155,7 @@ define([
         if (this.isEmpty()) return null;
         const geohashes = [];
         const hashString = this.get("hashString");
-        for (let i = 0; i < 32; i++) {
+        for (var i = 0; i < 32; i++) {
           geohashes.push(
             new Geohash({
               hashString: hashString + i.toString(32),
@@ -232,7 +232,7 @@ define([
         if (geometry === "rectangle" || geometry === "both") {
           const bounds = this.getBounds();
           if (bounds) {
-            let [south, west, north, east] = bounds;
+            var [south, west, north, east] = bounds;
             // Set min latitude to -89.99999 for Geohashes. This is for Cesium.
             if (south && west && north && east) {
               if (south === -90) south = -89.99999;
@@ -318,7 +318,7 @@ define([
         };
         if (label && (properties[label] || properties[label] === 0)) {
           (feature["label"] = {
-            text: properties[label]?.toString(),
+            text: properties[label].toString(),
             show: true,
             fillColor: {
               rgba: [255, 255, 255, 255],

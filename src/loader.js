@@ -116,7 +116,8 @@ MetacatUI.loadTheme = function() {
 */
 MetacatUI.initApp = function () {
     var script = document.createElement("script");
-    script.setAttribute("data-main", MetacatUI.root + "/js/app.js?v=" + MetacatUI.metacatUIVersion);
+    // script.setAttribute("data-main", MetacatUI.root + "/js/app.js?v=" + MetacatUI.metacatUIVersion);
+    script.setAttribute("data-main", MetacatUI.root + "/min-main-built.js?v=" + MetacatUI.metacatUIVersion);
     script.src = MetacatUI.root + "/components/require.js";
     document.getElementsByTagName("body")[0].appendChild(script);
 }
@@ -127,6 +128,11 @@ MetacatUI.initApp = function () {
   These values are set directly on the AppModel when it is initialized and can be accessed
   from anywhere in the application through the AppModel. (e.g. `MetacatUI.appModel.get("attribute")`` )
 * @type {object}
+
+
+
+
+
 */
 MetacatUI.AppConfig = MetacatUI.AppConfig || {};
 

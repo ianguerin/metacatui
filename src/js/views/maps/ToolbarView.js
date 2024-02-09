@@ -288,7 +288,7 @@ define(
               // Render the link and content elements
               var linkEl = view.renderSectionLink(sectionOption)
               var action = sectionOption.action
-              let contentEl = null;
+              var contentEl = null;
               if (sectionOption.view) {
                 contentEl = view.renderSectionContent(sectionOption)
               }
@@ -417,7 +417,7 @@ define(
           try {
             // The icon element we will create and return. By default, return an empty span
             // element.
-            let icon = document.createElement('span');
+            var icon = document.createElement('span');
 
             // iconString must be string
             if (typeof iconString === 'string') {

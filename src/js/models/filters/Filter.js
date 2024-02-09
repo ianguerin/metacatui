@@ -521,14 +521,14 @@ define(['jquery', 'underscore', 'backbone'],
      */
     isIdFilter: function(){
       try {
-        let fields = this.get("fields");
-        let values = this.get("values");
+        var fields = this.get("fields");
+        var values = this.get("values");
 
         if(!fields){
           return false
         }
-        let idFields = MetacatUI.appModel.get("queryIdentifierFields");
-        let match = _.some(idFields, idField => fields.includes(idField));
+        var idFields = MetacatUI.appModel.get("queryIdentifierFields");
+        var match = _.some(idFields, idField => fields.includes(idField));
         
         //Check if the values are all identifiers by checking for uuids and dois
         if(!match && values.length){

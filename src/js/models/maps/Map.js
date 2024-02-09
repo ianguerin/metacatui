@@ -254,7 +254,7 @@ define([
        * since x.x.x
        */
       selectFeatures: function (features) {
-        this.get("interactions")?.selectFeatures(features);
+        this.get("interactions").selectFeatures(features);
       },
 
       /**
@@ -263,7 +263,7 @@ define([
        * @since 2.27.0
        */
       getSelectedFeatures: function () {
-        return this.get("interactions")?.get("selectedFeatures");
+        return this.get("interactions").get("selectedFeatures");
       },
 
       /**
@@ -276,7 +276,7 @@ define([
        * of targets.
        */
       zoomTo: function (target) {
-        this.get("interactions")?.set("zoomTarget", target);
+        this.get("interactions").set("zoomTarget", target);
       },
 
       /**
@@ -293,7 +293,7 @@ define([
        * @since 2.25.0
        */
       resetLayers: function () {
-        const newLayers = this.defaults()?.layers || new MapAssets();
+        const newLayers = this.defaults().layers || new MapAssets();
         this.set("layers", newLayers);
         return newLayers;
       },

@@ -152,7 +152,7 @@ define(["jquery", "underscore", "backbone",
                 domainObject.textDomain = {};
                 var xmlID;
                 var definition;
-                let patterns = [];
+                var patterns = [];
                 var source;
 
                 // Add the XML id attribute
@@ -330,17 +330,17 @@ define(["jquery", "underscore", "backbone",
 
                             if ( domainType === "textDomain" ) {
 
-                                let originalTextDomain = $(objectDOM).find("#" + xmlID).find("textdomain");
+                                var originalTextDomain = $(objectDOM).find("#" + xmlID).find("textdomain");
 
                                 //If there are existing textDomain nodes in the DOM, update them
                                 if( originalTextDomain.length ){
-                                    let updatedTextDomain = this.updateTextDomain(domain.textDomain, originalTextDomain);
+                                    var updatedTextDomain = this.updateTextDomain(domain.textDomain, originalTextDomain);
                                     originalTextDomain.replaceWith(updatedTextDomain);
                                 }
                                 //If there are no textDomain nodes in the DOM, create new ones
                                 else{
                                   //Create new textDomain nodes
-                                  let newTextDomain = this.createTextDomain(domain.textDomain);
+                                  var newTextDomain = this.createTextDomain(domain.textDomain);
 
                                   //Insert the new textDomain nodes into the nonNumericDomain node
                                   $( $(objectDOM).children("nonnumericdomain")[i] ).html( newTextDomain );
@@ -359,11 +359,11 @@ define(["jquery", "underscore", "backbone",
                             //If this is a text domain,
                             if( typeof domain.textDomain === "object" ){
 
-                                let originalTextDomain = $($(objectDOM).children("nonnumericdomain")[i]).find("textdomain");
+                                var originalTextDomain = $($(objectDOM).children("nonnumericdomain")[i]).find("textdomain");
 
                                 //If there are existing textDomain nodes in the DOM, update them
                                 if( originalTextDomain.length ){
-                                    let updatedTextDomain = this.updateTextDomain(domain.textDomain, originalTextDomain);
+                                    var updatedTextDomain = this.updateTextDomain(domain.textDomain, originalTextDomain);
                                     originalTextDomain.replaceWith(updatedTextDomain);
                                 }
                                 //If there are no textDomain nodes in the DOM, create new ones
@@ -713,7 +713,7 @@ define(["jquery", "underscore", "backbone",
               // Add any new patterns
               if ( textDomain.pattern && textDomain.pattern.length ) {
 
-                  let patterns = Array.from(textDomain.pattern).reverse();
+                  var patterns = Array.from(textDomain.pattern).reverse();
 
                   _.each(patterns, function(pattern) {
 
@@ -794,7 +794,7 @@ define(["jquery", "underscore", "backbone",
                 }
             },
 
-            /* Let the top level package know of attribute changes from this object */
+            /* var the top level package know of attribute changes from this object */
             trickleUpChange: function(){
                 MetacatUI.rootDataPackage.packageModel.set("changed", true);
             },

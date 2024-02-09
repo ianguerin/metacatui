@@ -91,7 +91,7 @@ define(['jquery', 'underscore', 'backbone'],
           // Track the error
           const message = `Couldn't get the DataONE Node info document: ` +
             `${textStatus}, ${errorThrown}`;
-          MetacatUI.analytics?.trackException(message, null, false);
+          MetacatUI.analytics.trackException(message, null, false);
 
           //Trigger an error on this model
           thisModel.set("error", true);

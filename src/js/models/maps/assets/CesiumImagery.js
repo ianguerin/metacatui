@@ -239,7 +239,7 @@ define(
           }
 
           if (providerFunction && typeof providerFunction === 'function') {
-            let provider = new providerFunction(cesiumOptions)
+            var provider = new providerFunction(cesiumOptions)
             provider.readyPromise
               .then(function () {
                 // Imagery must be converted from a Cesium Imagery Provider to a Cesium
@@ -251,7 +251,7 @@ define(
               })
               .otherwise(function (error) {
                 // See https://cesium.com/learn/cesiumjs/ref-doc/RequestErrorEvent.html
-                let details = error;
+                var details = error;
                 // Write a helpful error message
                 switch (error.statusCode) {
                   case 404:
@@ -284,14 +284,14 @@ define(
 
             this.listenTo(this, 'change:opacity', function (model, opacity) {
               cesiumModel.alpha = opacity
-              // Let the map and/or other parent views know that a change has been made
+              // var the map and/or other parent views know that a change has been made
               // that requires the map to be re-rendered
               model.trigger('appearanceChanged')
 
             })
             this.listenTo(this, 'change:visible', function (model, visible) {
               cesiumModel.show = visible
-              // Let the map and/or other parent views know that a change has been made
+              // var the map and/or other parent views know that a change has been made
               // that requires the map to be re-rendered
               model.trigger('appearanceChanged')
             })
@@ -344,8 +344,8 @@ define(
 
             provider.requestImage(x, y, level).then(function (response) {
 
-              let data = response.blob
-              let objectURL = null
+              var data = response.blob
+              var objectURL = null
 
               if (!data && response instanceof ImageBitmap) {
                 objectURL = model.getDataUriFromBitmap(response)

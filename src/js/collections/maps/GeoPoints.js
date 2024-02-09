@@ -32,7 +32,7 @@ define(["backbone", "models/maps/GeoPoint"], function (Backbone, GeoPoint) {
        * GeoPoint model.
        */
       formatPoint: function (point) {
-        let attributes = {};
+        var attributes = {};
         if (Array.isArray(point) && point.length > 1) {
           attributes.longitude = point[0];
           attributes.latitude = point[1];
@@ -160,7 +160,7 @@ define(["backbone", "models/maps/GeoPoint"], function (Backbone, GeoPoint) {
         if (!forceAsPolygon && geometryType === "Polygon" && this.length < 3) {
           geometryType = this.length === 1 ? "Point" : "LineString";
         }
-        let czml = [this.getCZMLHeader()];
+        var czml = [this.getCZMLHeader()];
         switch (geometryType) {
           case "Point":
             czml = czml.concat(this.toCZMLPoints());

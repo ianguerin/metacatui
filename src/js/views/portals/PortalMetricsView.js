@@ -267,7 +267,7 @@ define(["jquery",
           // Track the error
           const model = this.model;
           const portalID = model.get("portalId") || model.get("label");
-          MetacatUI.analytics?.trackException(
+          MetacatUI.analytics.trackException(
             "Failed to render the Metrics view for a portal", portalID, false
           );
 

@@ -420,7 +420,7 @@ define(["jquery", "underscore", "backbone",
 
             },
 
-            /* Let the top level package know of attribute changes from this object */
+            /* var the top level package know of attribute changes from this object */
             trickleUpChange: function(){
                 MetacatUI.rootDataPackage.packageModel.set("changed", true);
             }

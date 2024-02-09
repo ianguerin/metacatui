@@ -166,7 +166,7 @@ define([
         // Clone the models in hovered features and set them as clicked features
         const hoveredFeatures = this.get("hoveredFeatures").models;
         this.setClickedFeatures(hoveredFeatures);
-        const clickAction = this.get("mapModel")?.get("clickFeatureAction");
+        const clickAction = this.get("mapModel").get("clickFeatureAction");
         if (clickAction === "showDetails") {
           this.selectFeatures(hoveredFeatures);
         } else if (clickAction === "zoom") {
@@ -201,7 +201,7 @@ define([
        * @returns {GeoPoint} The corresponding position as a GeoPoint model.
        */
       setPosition: function(attributeName, position) {
-        let point = this.get(attributeName);
+        var point = this.get(attributeName);
         if (!point) {
           point = new GeoPoint();
           this.set(attributeName, point);
@@ -238,7 +238,7 @@ define([
        * @returns {GeoScale} The scale as a GeoScale model.
        */
       setScale: function (scale) {
-        let scaleModel = this.get("scale");
+        var scaleModel = this.get("scale");
         if (!scaleModel) {
           scaleModel = new GeoScale();
           this.set("scale", scaleModel);
@@ -255,7 +255,7 @@ define([
        * @returns {GeoBoundingBox} The view extent as a GeoBoundingBox model.
        */
       setViewExtent: function (extent) {
-        let viewExtent = this.get("viewExtent");
+        var viewExtent = this.get("viewExtent");
         if (!viewExtent) {
           viewExtent = new GeoBoundingBox();
           this.set("viewExtent", viewExtent);
@@ -336,7 +336,7 @@ define([
             return;
           }
 
-          const assets = this.get("mapModel")?.get("layers");
+          const assets = this.get("mapModel").get("layers");
 
           const newAttrs = features.map((f) => ({ featureObject: f }));
 

@@ -147,9 +147,9 @@ define(
             var view = this;
 
             // The color palette maps colors to attributes of the map asset
-            let colorPalette = null;
+            var colorPalette = null;
             // For color palettes,
-            let paletteType = null;
+            var paletteType = null;
             const mode = this.mode;
 
             // Insert the template into the view
@@ -239,9 +239,9 @@ define(
             }
             const view = this
             // Data to use in d3
-            let data = colorPalette.get('colors').toJSON().reverse();
+            var data = colorPalette.get('colors').toJSON().reverse();
             // The max width of the SVG, to be reduced if there are few colours
-            let width = this.previewSvgDimensions.width
+            var width = this.previewSvgDimensions.width
             // The height of the SVG
             const height = this.previewSvgDimensions.height
             // Height and width of the square is the height of the SVG, leaving some room
@@ -249,7 +249,7 @@ define(
             const squareSize = height * 0.92
             // Maximum spacing between squares. When not hovered, the squares will be
             // spaced 80% of this value.
-            let squareSpacing = this.previewSvgDimensions.squareSpacing
+            var squareSpacing = this.previewSvgDimensions.squareSpacing
             // The maximum number of squares that can fit on the SVG without any spilling
             // over
             const maxNumSquares = Math.floor(((width - squareSize) / squareSpacing) + 1)
@@ -368,9 +368,9 @@ define(
             }
             const view = this
             // Data to use in d3
-            let data = colorPalette.get('colors').toJSON();
+            var data = colorPalette.get('colors').toJSON();
             // The max width of the SVG
-            let width = this.previewSvgDimensions.width
+            var width = this.previewSvgDimensions.width
             // The height of the SVG
             const height = this.previewSvgDimensions.height
             // Height of the gradient rectangle, leaving some room for the drop shadow
@@ -387,7 +387,7 @@ define(
             const min = data[0].value
             const max = data[data.length - 1].value
             const range = max - min
-            let roundingConstant = 10 // Allow 1 decimal place by default
+            var roundingConstant = 10 // Allow 1 decimal place by default
             if (range < 0.0001 || range > 100000) {
               roundingConstant = null // Will use scientific notation
             } else if (range < 0.001) {
@@ -454,7 +454,7 @@ define(
             rect.on('mousemove', function () {
               if (view.model.get('visible')) {
                 // Get the coordinates of the mouse relative to the rectangle
-                let xMouse = d3.mouse(this)[0];
+                var xMouse = d3.mouse(this)[0];
                 if (xMouse < 0) {
                   xMouse = 0;
                 }
@@ -464,7 +464,7 @@ define(
                 // Get the relative position of the mouse to the gradient
                 const relativePosition = xMouse / width;
                 // Get the value at the relative position by interpolating the data
-                let value = d3.interpolate(data[0].value, data[data.length - 1].value)(relativePosition);
+                var value = d3.interpolate(data[0].value, data[data.length - 1].value)(relativePosition);
                 // Show tooltip with the value
                 if (value || value === 0) {
                   // Round or show in scientific notation

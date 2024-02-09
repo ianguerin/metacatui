@@ -49,13 +49,13 @@ define(['jquery',
         this.set(this.parse(attributes.objectDOM))
       }
       else if(attributes.objectXML){
-        let objectDOM = $.parseHTML(attributes.objectXML)[0];
+        var objectDOM = $.parseHTML(attributes.objectXML)[0];
         this.set("objectDOM", objectDOM);
         this.set(this.parse(objectDOM))
       }
       else{
         //Create the custom method steps and add to the step list
-        let customMethodSteps = this.createCustomMethodSteps();
+        var customMethodSteps = this.createCustomMethodSteps();
         this.set("methodSteps", customMethodSteps);
       }
 
@@ -89,10 +89,10 @@ define(['jquery',
       var model = this;
 
       //Create the custom method steps
-      let customMethodSteps = this.createCustomMethodSteps();
+      var customMethodSteps = this.createCustomMethodSteps();
 
       //Create new EMLMethodStep models for the method steps
-      let allMethodSteps = _.map($(objectDOM).find('methodstep'), function(el, i) {
+      var allMethodSteps = _.map($(objectDOM).find('methodstep'), function(el, i) {
                               return new EMLMethodStep({
                                 objectDOM: el
                                });
@@ -169,10 +169,10 @@ define(['jquery',
         try{
 
           //Sort the custom method steps to match the app config order
-          let configCustomMethods = _.clone(MetacatUI.appModel.get("customEMLMethods") || []);
+          var configCustomMethods = _.clone(MetacatUI.appModel.get("customEMLMethods") || []);
           if( configCustomMethods.length ){
             configCustomMethods.forEach( customOptions => {
-              let matchingStep = customMethodSteps.find( step => { return customOptions.titleOptions.includes(step.get("description").get("title")) });
+              var matchingStep = customMethodSteps.find( step => { return customOptions.titleOptions.includes(step.get("description").get("title")) });
               if( matchingStep ){
                 sortedCustomMethodSteps.push(matchingStep);
               }
@@ -314,10 +314,10 @@ define(['jquery',
       try{
 
         if(!attr){
-          let attr = {}
+          var attr = {}
         }
 
-        let newStep = new EMLMethodStep(attr);
+        var newStep = new EMLMethodStep(attr);
         this.get("methodSteps").push(newStep);
         this.set("methodSteps", this.get("methodSteps"));
         return newStep;
@@ -449,10 +449,10 @@ define(['jquery',
 
       try{
 
-        let validationErrors = {}
+        var validationErrors = {}
 
         //Validate each custom Method Step
-        let customSteps = this.getCustomSteps(),
+        var customSteps = this.getCustomSteps(),
             methodStepValidationErrors = {};
 
         customSteps.forEach(step => {
@@ -466,9 +466,9 @@ define(['jquery',
         }
 
         //Check for the required fields
-        let isRequired = MetacatUI.appModel.get("emlEditorRequiredFields").methods === true;
+        var isRequired = MetacatUI.appModel.get("emlEditorRequiredFields").methods === true;
         if( isRequired ){
-          let steps = this.getNonCustomSteps();
+          var steps = this.getNonCustomSteps();
           if( !steps || !steps.length){
             validationErrors.methodSteps = "At least one method step is required.";
           }
@@ -520,7 +520,7 @@ define(['jquery',
     */
     createCustomMethodSteps: function(){
       //Get the custom methods configured in the app
-      let configCustomMethods = MetacatUI.appModel.get("customEMLMethods"),
+      var configCustomMethods = MetacatUI.appModel.get("customEMLMethods"),
           customMethods = [];
 
       //If there is at least one

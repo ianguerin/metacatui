@@ -87,7 +87,7 @@ define(['underscore', 'jquery', 'backbone', 'models/metadata/eml211/EMLMethods',
               }));
 
               //Render each EMLMethodStep
-              let regularMethodSteps = this.model.getNonCustomSteps();
+              var regularMethodSteps = this.model.getNonCustomSteps();
               regularMethodSteps.forEach(step => {
                 this.renderMethodStep(step)
               });
@@ -113,7 +113,7 @@ define(['underscore', 'jquery', 'backbone', 'models/metadata/eml211/EMLMethods',
       renderMethodStep: function(step){
         try{
 
-          let stepEl;
+          var stepEl;
 
           if(step){
             //Render the step HTML
@@ -157,12 +157,12 @@ define(['underscore', 'jquery', 'backbone', 'models/metadata/eml211/EMLMethods',
       renderCustomMethods: function(){
 
         //Get the custom EML Methods that are configured in the AppConfig
-        let customMethodsOptions = MetacatUI.appModel.get("customEMLMethods");
+        var customMethodsOptions = MetacatUI.appModel.get("customEMLMethods");
 
         //If there is at least one custom Method configured, proceed with rendering it
         if( Array.isArray(customMethodsOptions) && customMethodsOptions.length ){
 
-          let view = this;
+          var view = this;
 
           //Get the custom Methods template
           require(['text!templates/metadata/eml-custom-methods.html'], function(CustomMethodsTemplate){
@@ -170,7 +170,7 @@ define(['underscore', 'jquery', 'backbone', 'models/metadata/eml211/EMLMethods',
             try{
 
               //Get the Methods from the EMLMethods model
-              let allMethodSteps = view.model.get("methodSteps"),
+              var allMethodSteps = view.model.get("methodSteps"),
               //Find the custom methods set on the model
                   allCustomMethods = allMethodSteps.filter(step => { return step.isCustom() }),
               //Start a literal object to send to the custom methods template
@@ -182,7 +182,7 @@ define(['underscore', 'jquery', 'backbone', 'models/metadata/eml211/EMLMethods',
               });
 
               //Insert the custom methods template into the page
-              let customMethodsTemplate = _.template(CustomMethodsTemplate);
+              var customMethodsTemplate = _.template(CustomMethodsTemplate);
               view.$(view.customMethodsSelector).html(customMethodsTemplate(templateInfo));
 
               //Attach each custom method model to it's textarea or input
@@ -223,7 +223,7 @@ define(['underscore', 'jquery', 'backbone', 'models/metadata/eml211/EMLMethods',
 
           //If there is already an EMLMethodStep model created, then update it
           if( methodStep ){
-            let desc = methodStep.get("description");
+            var desc = methodStep.get("description");
             desc.setText(updatedInput.val());
           }
           else{
@@ -256,7 +256,7 @@ define(['underscore', 'jquery', 'backbone', 'models/metadata/eml211/EMLMethods',
           //If there's no value set on this attribute yet, create a new EMLText model
           else if(!textModelToUpdate){
 
-            let textType;
+            var textType;
             switch(changedAttr){
               case "studyExtentDescription":
                 textType = "description";
@@ -319,7 +319,7 @@ define(['underscore', 'jquery', 'backbone', 'models/metadata/eml211/EMLMethods',
           this.model.removeMethodStep(step);
 
           //Remove the step elements from the page
-          let view = this;
+          var view = this;
           $(e.target).parent(".step-container").slideUp("fast", function(){
             this.remove();
 

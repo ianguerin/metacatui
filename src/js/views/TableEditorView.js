@@ -184,10 +184,10 @@ define([
             const data = this.getData();
             if (data === undefined || data === null) return;
 
-            for (let i = 0; i < data.length; i++) {
-              for (let j = 1; j < data[i].length; j++) {
+            for (var i = 0; i < data.length; i++) {
+              for (var j = 1; j < data[i].length; j++) {
                 const cell = this.$el.find(`#r-${i}-${j}`)[0];
-                let value = data[i][j];
+                var value = data[i][j];
                 if (i > 0) {
                   cell.innerHTML = data[i][j];
                 } else {
@@ -211,7 +211,7 @@ define([
          */
         getData: function() {
           try {
-            let data = this.tableData;
+            var data = this.tableData;
             if (data === undefined || data === null || data.length == 0) {
               return this.initializeData();
             }
@@ -227,9 +227,9 @@ define([
         initializeData: function() {
           try {
             const data = [];
-            for (let i = 0; i <= this.rowCount; i++) {
+            for (var i = 0; i <= this.rowCount; i++) {
               const child = [];
-              for (let j = 0; j <= this.colCount; j++) {
+              for (var j = 0; j <= this.colCount; j++) {
                 child.push("");
               }
               data.push(child);
@@ -249,8 +249,8 @@ define([
         updateData: function(e) {
           try {
             if (e.target) {
-              let item;
-              let newValue;
+              var item;
+              var newValue;
               if (e.target.nodeName === "TD") {
                 item = e.target;
                 newValue = item.textContent;
@@ -260,7 +260,7 @@ define([
               }
               if (item) {
                 const indices = item.id.split("-");
-                let spreadsheetData = this.getData();
+                var spreadsheetData = this.getData();
                 spreadsheetData[indices[1]][indices[2]] = newValue;
                 this.saveData(spreadsheetData);
               }
@@ -313,7 +313,7 @@ define([
           try {
             const tr = document.createElement("tr");
             tr.setAttribute("id", "r-0");
-            for (let i = 0; i <= this.colCount; i++) {
+            for (var i = 0; i <= this.colCount; i++) {
               const th = document.createElement("th");
               th.setAttribute("id", `r-0-${i}`);
               th.setAttribute("class", `${i === 0 ? "" : "column-header"}`);
@@ -355,7 +355,7 @@ define([
           try {
             const tr = document.createElement("tr");
             tr.setAttribute("id", `r-${rowNum}`);
-            for (let i = 0; i <= this.colCount; i++) {
+            for (var i = 0; i <= this.colCount; i++) {
               const cell = document.createElement(`${i === 0 ? "th" : "td"}`);
               // header
               if (i === 0) {
@@ -396,7 +396,7 @@ define([
          */
         createTableBody: function(tableBody) {
           try {
-            for (let rowNum = 1; rowNum <= this.rowCount; rowNum++) {
+            for (var rowNum = 1; rowNum <= this.rowCount; rowNum++) {
               tableBody.appendChild(this.createTableBodyRow(rowNum));
             }
           } catch (e) {
@@ -412,7 +412,7 @@ define([
          */
         addRow: function(currentRow, direction) {
           try {
-            let data = this.getData();
+            var data = this.getData();
             const colCount = data[0].length;
             const newRow = new Array(colCount).fill("");
             if (direction === "top") {
@@ -435,7 +435,7 @@ define([
          */
         deleteRow: function(currentRow) {
           try {
-            let data = this.getData();
+            var data = this.getData();
             // Don't allow deletion of the last row
             if (data.length <= 2) {
               this.resetData();
@@ -458,8 +458,8 @@ define([
          */
         addColumn: function(currentCol, direction) {
           try {
-            let data = this.getData();
-            for (let i = 0; i <= this.rowCount; i++) {
+            var data = this.getData();
+            for (var i = 0; i <= this.rowCount; i++) {
               if (direction === "left") {
                 data[i].splice(currentCol, 0, "");
               } else if (direction === "right") {
@@ -481,13 +481,13 @@ define([
          */
         deleteColumn: function(currentCol) {
           try {
-            let data = this.getData();
+            var data = this.getData();
             // Don't allow deletion of the last column
             if (data[0].length <= 2) {
               this.resetData();
               return;
             }
-            for (let i = 0; i <= this.rowCount; i++) {
+            for (var i = 0; i <= this.rowCount; i++) {
               data[i].splice(currentCol, 1);
             }
             this.colCount--;
@@ -505,9 +505,9 @@ define([
          */
         sortColumn: function(currentCol) {
           try {
-            let spreadSheetData = this.getData();
-            let data = spreadSheetData.slice(1);
-            let headers = spreadSheetData.slice(0, 1)[0];
+            var spreadSheetData = this.getData();
+            var data = spreadSheetData.slice(1);
+            var headers = spreadSheetData.slice(0, 1)[0];
             if (!data.some(a => a[currentCol] !== "")) return;
             if (this.sortingHistory.has(currentCol)) {
               const sortOrder = this.sortingHistory.get(currentCol);
@@ -543,8 +543,8 @@ define([
          */
         ascSort: function(currentCol, a, b) {
           try {
-            let _a = a[currentCol];
-            let _b = b[currentCol];
+            var _a = a[currentCol];
+            var _b = b[currentCol];
             if (_a === "") return 1;
             if (_b === "") return -1;
 
@@ -573,8 +573,8 @@ define([
          */
         dscSort: function(currentCol, a, b) {
           try {
-            let _a = a[currentCol];
-            let _b = b[currentCol];
+            var _a = a[currentCol];
+            var _b = b[currentCol];
             if (_a === "") return 1;
             if (_b === "") return -1;
 
@@ -612,7 +612,7 @@ define([
             var tableData = this.getData();
             // Remove the empty column that we use for row numbers first
             if (this.hasEmptyCol1(tableData)) {
-              for (let i = 0; i <= (tableData.length - 1); i++) {
+              for (var i = 0; i <= (tableData.length - 1); i++) {
                 tableData[i].splice(0, 1);
               }
             }
@@ -658,7 +658,7 @@ define([
           try {
             var firstColEmpty = true;
             // Check if the first item in each row is blank
-            for (let i = 0; i <= (data.length - 1); i++) {
+            for (var i = 0; i <= (data.length - 1); i++) {
               if (data[i][0] != "") {
                 firstColEmpty = false;
                 break;

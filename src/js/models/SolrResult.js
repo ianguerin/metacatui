@@ -302,7 +302,7 @@ define(['jquery', 'underscore', 'backbone'],
 					model.trigger("downloadComplete");
 
 					// Track this event
-					MetacatUI.analytics?.trackEvent(
+					MetacatUI.analytics.trackEvent(
 						"download",
 						"Download DataONEObject", 
 						model.get("id")
@@ -313,7 +313,7 @@ define(['jquery', 'underscore', 'backbone'],
         model.trigger("downloadError");
 
 				// Track the error
-				MetacatUI.analytics?.trackException(
+				MetacatUI.analytics.trackException(
 					`Download DataONEObject error: ${e || ""}`, model.get("id"), true
 				);
 			};
@@ -739,7 +739,7 @@ define(['jquery', 'underscore', 'backbone'],
         return json.resourceMap.trim();
       }
       else if( Array.isArray(json.resourceMap) ){
-        let newResourceMapIds = [];
+        var newResourceMapIds = [];
         _.each(json.resourceMap, function(rMapId){
           if( typeof rMapId == "string" ){
             newResourceMapIds.push(rMapId.trim());

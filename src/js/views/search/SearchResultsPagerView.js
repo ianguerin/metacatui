@@ -90,8 +90,8 @@ define(["backbone"], function (Backbone) {
         }
       ) {
         // Expand the data object into individual variables
-        let { page, pageDisplay, className } = data;
-        let href = `${this.url(data.page)}`;
+        var { page, pageDisplay, className } = data;
+        var href = `${this.url(data.page)}`;
         if (href.length) href = `href="${href}"`;
         return `
         <li class="${className}">
@@ -142,7 +142,7 @@ define(["backbone"], function (Backbone) {
 
         // Ensure that we don't navigate to a page that doesn't exist
         const numPages = this.searchResults.getNumPages();
-        const currentPage = MetacatUI.appModel.get("page");
+        let currentPage = MetacatUI.appModel.get("page");
         if (currentPage > numPages) {
           MetacatUI.appModel.set("page", numPages);
           this.searchResults.toPage(numPages);
@@ -158,9 +158,9 @@ define(["backbone"], function (Backbone) {
           this.show();
           this.removeLoading();
 
-          let container = this.el.querySelector("ul"),
+          var container = this.el.querySelector("ul"),
             lastPage = this.searchResults.getNumPages(),
-            firstPage = 0,
+            firstPage = 0;
             currentPage = this.searchResults.getCurrentPage();
 
           //Empty the pager container
@@ -192,14 +192,14 @@ define(["backbone"], function (Backbone) {
           }
 
           //Show the current page plus two on each side
-          let pages = [
+          var pages = [
             currentPage - 2,
             currentPage - 1,
             currentPage,
             currentPage + 1,
             currentPage + 2,
           ];
-          for (let page of pages) {
+          for (var page of pages) {
             if ((page > firstPage && page < lastPage) || page == currentPage) {
               container.insertAdjacentHTML(
                 "beforeend",
@@ -254,7 +254,7 @@ define(["backbone"], function (Backbone) {
 
         evt.preventDefault();
         evt.stopPropagation();
-        let page = evt.target.getAttribute("data-page");
+        var page = evt.target.getAttribute("data-page");
         if (this.searchResults) {
           this.searchResults.toPage(page);
           MetacatUI.appModel.set("page", page);

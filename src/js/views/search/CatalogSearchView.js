@@ -299,7 +299,7 @@ define([
 
         this.initialQuery = options.initialQuery || null;
 
-        let model = options.model;
+        var model = options.model;
         if (!model) {
           const app = MetacatUI.appModel;
           model = new MapSearchFiltersConnector({
@@ -580,7 +580,7 @@ define([
        */
       titleTemplate: function (start, end, numFound) {
         try {
-          let content = "";
+          var content = "";
           const csn = MetacatUI.appView.commaSeparateNumber;
           if (numFound < end) end = numFound;
 
@@ -610,7 +610,7 @@ define([
       renderTitle: function () {
         try {
           const searchResults = this.model.get("searchResults");
-          let titleEl = this.el.querySelector(this.titleContainer);
+          var titleEl = this.el.querySelector(this.titleContainer);
 
           if (!titleEl) {
             titleEl = document.createElement("div");
@@ -620,7 +620,7 @@ define([
 
           titleEl.innerHTML = "";
 
-          let title = this.titleTemplate(
+          var title = this.titleTemplate(
             searchResults.getStart() + 1,
             searchResults.getEnd() + 1,
             searchResults.getNumFound()
@@ -667,7 +667,7 @@ define([
       addLinkedData: function () {
         try {
           // JSON Linked Data Object
-          let elJSON = {
+          var elJSON = {
             "@context": {
               "@vocab": "http://schema.org/",
             },
@@ -675,10 +675,10 @@ define([
           };
 
           // Find the MN info from the CN Node list
-          let members = MetacatUI.nodeModel.get("members"),
+          var members = MetacatUI.nodeModel.get("members"),
             nodeModelObject;
 
-          for (let i = 0; i < members.length; i++) {
+          for (var i = 0; i < members.length; i++) {
             if (
               members[i].identifier ==
               MetacatUI.nodeModel.get("currentMemberNode")
@@ -688,7 +688,7 @@ define([
           }
           if (nodeModelObject) {
             // "keywords": "", "provider": "",
-            let conditionalData = {
+            var conditionalData = {
               description: nodeModelObject.description,
               identifier: nodeModelObject.identifier,
               image: nodeModelObject.logo,
@@ -860,7 +860,7 @@ define([
 
         // Select the map filter toggle checkbox so that we can keep it in sync
         // with the new setting
-        let mapFilterToggle = this.el.querySelector(this.mapFilterToggle);
+        var mapFilterToggle = this.el.querySelector(this.mapFilterToggle);
         // If it's not a checkbox input, find the child checkbox input
         if (mapFilterToggle && mapFilterToggle.tagName != "INPUT") {
           mapFilterToggle = mapFilterToggle.querySelector("input");
@@ -893,7 +893,7 @@ define([
             .classList.remove(this.bodyClass, this.hideMapClass);
 
           // Remove the JSON-LD from the page
-          document.getElementById("jsonld")?.remove();
+          document.getElementById("jsonld").remove();
         } catch (e) {
           console.error("Couldn't close search view. ", e);
         }

@@ -229,7 +229,7 @@ define([
         const currentMetricIndex = this.metrics.findIndex(
           (metric) => metric.name === currentMetricName
         );
-        let metricIndex = (currentMetricIndex + n) % this.metrics.length;
+        var metricIndex = (currentMetricIndex + n) % this.metrics.length;
         if (metricIndex < 0) {
           metricIndex = this.metrics.length + metricIndex;
         }
@@ -264,7 +264,7 @@ define([
        */
       showCitations: function () {
         var resultDetails = this.metricsModel.get("resultDetails");
-        let citationCollection;
+        var citationCollection;
 
         if (resultDetails) {
           citationCollection = new Citations(resultDetails["citations"], {
@@ -334,7 +334,7 @@ define([
         this.$el.html(container);
 
         //Create a SignInView
-        let signInView = new SignInView();
+        var signInView = new SignInView();
         signInView.redirectQueryString = "registerCitation=true";
 
         //Get the Sign In buttons elements

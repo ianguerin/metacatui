@@ -46,7 +46,7 @@ define(['jquery', 'underscore', 'backbone'],
       };
 
       _.each(accessRuleXMLObj.find("permission"), function(permissionNode, idx) {
-        let permissionText = $(permissionNode).text().trim();
+        var permissionText = $(permissionNode).text().trim();
 
         // Check if the permission text is not empty
         if (permissionText.length) {
@@ -58,17 +58,17 @@ define(['jquery', 'underscore', 'backbone'],
           // See https://github.com/NCEAS/metacatui/issues/2235
 
           // Define the regular expression
-          let globalPermRegex = /<permission><\/permission>(.*)/g;
+          var globalPermRegex = /<permission><\/permission>(.*)/g;
           // Define the regular expression
-          let permRegex = /<permission><\/permission>(.*)/;
+          var permRegex = /<permission><\/permission>(.*)/;
 
-          let accessRoleStr = accessRuleXMLObj.html();
+          var accessRoleStr = accessRuleXMLObj.html();
 
-          let matches = accessRoleStr.match(globalPermRegex);
+          var matches = accessRoleStr.match(globalPermRegex);
 
           // Check if matches exist and have a length
           if (matches && matches.length && idx < matches.length) {
-            let permMatch = matches[idx].match(permRegex);
+            var permMatch = matches[idx].match(permRegex);
 
             // Check if permMatch exists and has a length
             if (permMatch && permMatch.length) {

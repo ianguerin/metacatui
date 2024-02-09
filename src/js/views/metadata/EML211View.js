@@ -296,29 +296,30 @@ define(['underscore', 'jquery', 'backbone',
               this.$(".section.overview").append(container);
             }
 
-            require(['text!../img/icons/datatags/check-tag.svg', 'text!../img/icons/datatags/alert-tag.svg'], function(checkTagIcon, alertTagIcon){
-              container.html(view.dataSensitivityTemplate({
-                checkTagIcon: checkTagIcon,
-                alertTagIcon: alertTagIcon
-              }));
+            //TODO(ianguerin): what are these svgs for and why are they causing an error with r.js?
+            // require(['text!../img/icons/datatags/check-tag.svg', 'text!../img/icons/datatags/alert-tag.svg'], function(checkTagIcon, alertTagIcon){
+            //   container.html(view.dataSensitivityTemplate({
+            //     checkTagIcon: checkTagIcon,
+            //     alertTagIcon: alertTagIcon
+            //   }));
 
-              //Initialize all the tooltips
-              view.$(".tooltip-this").tooltip();
+            //   //Initialize all the tooltips
+            //   view.$(".tooltip-this").tooltip();
 
-              //Check the radio button that is already selected, per the EML
-              let annotations = view.model.getDataSensitivity();
+            //   //Check the radio button that is already selected, per the EML
+            //   var annotations = view.model.getDataSensitivity();
 
-              if(annotations && annotations.length && typeof annotations[0].get == "function"){
-                let annotationValue = annotations[0].get("valueURI");
-                container.find("[value='" + annotationValue + "']").prop("checked", true);
-              }
+            //   if(annotations && annotations.length && typeof annotations[0].get == "function"){
+            //     var annotationValue = annotations[0].get("valueURI");
+            //     container.find("[value='" + annotationValue + "']").prop("checked", true);
+            //   }
 
 
-              //Trigger the editorInputsAdded event which will let other parts of the app,
-              // such as the EditorView, know that new inputs are on the page
-              view.trigger("editorInputsAdded");
+            //   //Trigger the editorInputsAdded event which will var other parts of the app,
+            //   // such as the EditorView, know that new inputs are on the page
+            //   view.trigger("editorInputsAdded");
 
-            });
+            // });
           }
           catch(e){
             console.error("Could not render the Data Sensitivity section: ", e);
@@ -364,7 +365,7 @@ define(['underscore', 'jquery', 'backbone',
 
             // If no parties exist for the given party type, but one is required,
             // (e.g. for contact and creator), then create one from the user's information.
-            if (!parties?.length && partyType.createFromUser){
+            if (!parties.length && partyType.createFromUser){
               
               var newParty = new EMLParty({
                 type: partyType.isAssociatedParty ? "associatedParty" : partyType.dataCategory,
@@ -676,7 +677,7 @@ define(['underscore', 'jquery', 'backbone',
             .attr("data-attribute", partyType)
             .attr("data-category", partyType)
             .addClass("row-striped");
-          let notification=document.createElement("p");
+          var notification=document.createElement("p");
           notification.className="notification";
           notification.setAttribute("data-category", partyType);
           partyTypeProperties.containerEl.append(notification);
@@ -868,7 +869,7 @@ define(['underscore', 'jquery', 'backbone',
           //Call removeParty on the EML211 model to remove this EMLParty
           this.model.removeParty(partyToRemove);
 
-          //Let the EMLPartyView remove itself
+          //var the EMLPartyView remove itself
           partyView.remove();
 
         },
@@ -1901,7 +1902,7 @@ define(['underscore', 'jquery', 'backbone',
             if (typeof cur === "undefined") {
               continue;
             }
-            cur.taxonRankName = cur.taxonRankName?.toLowerCase()
+            cur.taxonRankName = cur.taxonRankName.toLowerCase()
             rows.push(cur);
             if (cur.taxonomicClassification) {
               for (var i = 0; i < cur.taxonomicClassification.length; i++) {
@@ -2259,7 +2260,7 @@ define(['underscore', 'jquery', 'backbone',
             const opts = []
             for (const taxon of taxaList.taxa) {
               // check that it is not a duplicate in any coverages
-              let isDuplicate = false
+              var isDuplicate = false
               for (cov of coverages) {
                 if (cov.isDuplicate(taxon)) {
                   isDuplicate = true
@@ -2292,7 +2293,7 @@ define(['underscore', 'jquery', 'backbone',
               return null;
             }
             // Create a description
-            let description = option.taxonRankName + ": " + option.taxonRankValue
+            var description = option.taxonRankName + ": " + option.taxonRankValue
             if (option.taxonId) {
               description += " (" + option.taxonId.provider + ": " + option.taxonId.value + ")"
             }
@@ -2736,7 +2737,7 @@ define(['underscore', 'jquery', 'backbone',
               return;
             }
 
-            let annotationData = _.clone(e.target.dataset);
+            var annotationData = _.clone(e.target.dataset);
 
             //If this is a radio button, we only want one annotation of this type.
             if( e.target.getAttribute("type") == "radio" ){

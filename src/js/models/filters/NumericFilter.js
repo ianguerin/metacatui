@@ -97,7 +97,7 @@ define(['jquery', 'underscore', 'backbone', 'models/filters/Filter'],
             // When the model has changed to a numeric filter, set the range min, range max,
             // and step to the default values for a numeric filter, if they are currently set
             // to the default values for a coordinate filter (or when overwrite is true).
-            let defaultsToSet = numDefaults
+            var defaultsToSet = numDefaults
 
             // When the model has changed to a coordinate filter, set the range min, range max,
             // and step to the default values for a coordinate filter, if they are currently set
@@ -198,11 +198,11 @@ define(['jquery', 'underscore', 'backbone', 'models/filters/Filter'],
 
             // Returns the number of decimal places in a number
             function countDecimals(n) {
-              let text = n.toString()
+              var text = n.toString()
               // verify if number 0.000005 is represented as "5e-6"
               if (text.indexOf('e-') > -1) {
-                let [base, trail] = text.split('e-');
-                let deg = parseInt(trail, 10);
+                var [base, trail] = text.split('e-');
+                var deg = parseInt(trail, 10);
                 return deg;
               }
               // count decimals for number in representation like "0.123456"
@@ -225,7 +225,7 @@ define(['jquery', 'underscore', 'backbone', 'models/filters/Filter'],
 
             // Round min & max to number of decimal places in step
             if (step != null) {
-              let digits = countDecimals(step)
+              var digits = countDecimals(step)
               if (min != null) {
                 model.set('min', roundTo(min, digits))
               }

@@ -156,7 +156,7 @@ define(['jquery', 'underscore', 'backbone', 'rdflib', "uuid", "md5",
             //Set the id or create a new one
             this.id = options.id || "resource_map_urn:uuid:" + uuid.v4();
 
-            let packageModelAttrs = options.packageModelAttrs || {};
+            var packageModelAttrs = options.packageModelAttrs || {};
 
             if ( typeof options.packageModel !== "undefined" ) {
                 // use the given package model
@@ -1395,7 +1395,7 @@ define(['jquery', 'underscore', 'backbone', 'rdflib', "uuid", "md5",
                   collection.trigger("errorSaving", parsedResponse);
 
                   // Track this error in our analytics
-                  MetacatUI.analytics?.trackException(
+                  MetacatUI.analytics.trackException(
                     `DataPackage save error: ${parsedResponse}`,
                     collection.packageModel.get("id"),
                     true
@@ -3101,7 +3101,7 @@ define(['jquery', 'underscore', 'backbone', 'rdflib', "uuid", "md5",
             */
             setLoadingFiles: function(dataONEObject){
               //Set the number of loading files and the isLoadingFiles flag
-              let numLoadingFiles = this.where({ uploadStatus: "l" }).length + this.where({ uploadStatus: "p" }).length;
+              var numLoadingFiles = this.where({ uploadStatus: "l" }).length + this.where({ uploadStatus: "p" }).length;
               this.packageModel.set({"isLoadingFiles": numLoadingFiles > 0, "numLoadingFiles": numLoadingFiles});
 
               if( dataONEObject ){
@@ -3109,7 +3109,7 @@ define(['jquery', 'underscore', 'backbone', 'rdflib', "uuid", "md5",
                 this.listenTo(dataONEObject, "change:uploadStatus", function(){
                   //If the object is done being successfully saved
                   if( dataONEObject.get("uploadStatus") == "c" ){
-                    let numLoadingFiles = this.where({ uploadStatus: "l" }).length + this.where({ uploadStatus: "p" }).length;
+                    var numLoadingFiles = this.where({ uploadStatus: "l" }).length + this.where({ uploadStatus: "p" }).length;
 
                     //If all models in this DataPackage have finished loading, then mark the loading as complete
                     if( !numLoadingFiles ){

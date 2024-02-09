@@ -256,7 +256,7 @@ define(['jquery', 'underscore', 'backbone', 'd3'],
 					  	  barLabels.append("rect")
 							  		.attr("x", function(d, i){
 							  			var xPos = x(d.x) + (x.rangeBand()/2);
-								  		//Don't let our label bleed off the edge
+								  		//Don't var our label bleed off the edge
 								  		if(xPos < 0) xPos = xPos + labelWidth;
 								  		if((xPos + labelWidth) > width) xPos = xPos - labelWidth + labelXPadding;
 								  		
@@ -265,7 +265,7 @@ define(['jquery', 'underscore', 'backbone', 'd3'],
 								  	.attr("y", function(d, i){
 								  		var yPos = y(d.y) - 10;	
 								  		
-								  		//Don't let our label bleed off the edge
+								  		//Don't var our label bleed off the edge
 								  		if(yPos < (viewRef.margin.top * -1)) yPos = yPos + labelHeight;
 								  		else if(yPos > (viewRef.height - labelHeight)) yPos = yPos - labelHeight;
 								  							  		
@@ -285,7 +285,7 @@ define(['jquery', 'underscore', 'backbone', 'd3'],
 						  barLabels.append("text")
 								   .attr("x", function(d, i){
 								  		var xPos = x(d.x) + (x.rangeBand()/2);
-								  		//Don't let our label bleed off the edge
+								  		//Don't var our label bleed off the edge
 								  		if(xPos < 0) xPos = xPos + labelWidth;
 								  		if((xPos + labelWidth) > width) xPos = xPos - labelWidth + labelXPadding;
 								  		
@@ -294,7 +294,7 @@ define(['jquery', 'underscore', 'backbone', 'd3'],
 								  	.attr("y", function(d, i){
 								  		var yPos = y(d.y) - 10;	
 								  		
-								  		//Don't let our label bleed off the edge
+								  		//Don't var our label bleed off the edge
 								  		if(yPos < (viewRef.margin.top * -1)) yPos = yPos + labelHeight;
 								  		else if(yPos > (viewRef.height - labelHeight)) yPos = yPos - labelHeight;
 								  							  									  		

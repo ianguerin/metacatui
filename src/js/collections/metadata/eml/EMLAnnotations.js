@@ -32,7 +32,7 @@ function($, _, Backbone, EMLAnnotation){
           //If there is at least one model in this collection and there is a propertyURI set on the given model,
           if( this.length && annotation.get("propertyURI") ){
             //Return whether or not there is a duplicate
-            let properties = this.pluck("propertyURI");
+            var properties = this.pluck("propertyURI");
             return properties.includes(annotation.get("propertyURI"));
           }
           //If this collection is empty or the propertyURI is falsey, return false
@@ -60,7 +60,7 @@ function($, _, Backbone, EMLAnnotation){
         try{
 
           if( this.length && annotation.get("propertyURI") ){
-            let duplicates = this.findWhere({ "propertyURI": annotation.get("propertyURI") });
+            var duplicates = this.findWhere({ "propertyURI": annotation.get("propertyURI") });
             this.remove(duplicates);
           }
 

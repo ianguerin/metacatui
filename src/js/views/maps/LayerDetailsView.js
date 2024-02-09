@@ -247,7 +247,7 @@ define(
               const hideIfErrorSections = _.filter(this.renderedSections, function (section) {
                 return section.hideIfError
               })
-              let displayProperty = ''
+              var displayProperty = ''
               if (status === 'error') {
                 displayProperty = 'none'
               }

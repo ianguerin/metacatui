@@ -97,19 +97,19 @@ define(["jquery",
             return;
           }
 
-          let thisView = this;
+          var thisView = this;
 
           //Create a MapView and render it in this view
            require(
               ["views/maps/MapView", "models/maps/Map"],
               function (MapView, Map) {
                 
-                let mapModel = thisView.model.get("mapModel")
+                var mapModel = thisView.model.get("mapModel")
                 if (!mapModel) {
                   mapModel = new Map()
                   thisView.model.set("mapModel", mapModel)
                 }
-                let mapView = new MapView({
+                var mapView = new MapView({
                   model: mapModel
                 });
                 thisView.$el.html(mapView.el);

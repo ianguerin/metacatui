@@ -215,7 +215,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/login.html',
 
           }
           else{
-            let signInUrl = MetacatUI.appModel.get('signInUrlOrcid') + this.getRedirectURL();
+            var signInUrl = MetacatUI.appModel.get('signInUrlOrcid') + this.getRedirectURL();
 
             this.$el.append(this.buttonsTemplate({
               signInUrl: signInUrl
@@ -306,10 +306,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/login.html',
     * @returns {string}
     */
     getRedirectURL: function(){
-      let redirectURL = window.location.href;
+      var redirectURL = window.location.href;
 
       if( this.redirectQueryString && this.redirectQueryString.length ){
-        let currentQueryString = window.location.search;
+        var currentQueryString = window.location.search;
 
         //If there is a current query string in the window.location, concatenate the
         // new query string properly

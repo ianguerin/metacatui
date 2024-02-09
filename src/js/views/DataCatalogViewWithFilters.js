@@ -439,7 +439,7 @@ define([
         google.maps.event.trigger(this.mapModel.get("map"), "idle");
 
         // Track this event
-        MetacatUI.analytics?.trackEvent("map", (isOn ? "on" : "off"));
+        MetacatUI.analytics.trackEvent("map", (isOn ? "on" : "off"));
       },
 
       /**

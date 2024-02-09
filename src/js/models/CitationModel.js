@@ -142,7 +142,7 @@ define(["jquery", "underscore", "backbone", "collections/Citations"], function (
           if (response.origin) {
             const or = this.originToArray(response.origin);
           }
-          let sID = response.source_id;
+          var sID = response.source_id;
           if (this.isDOI(sID)) {
             if (sID.startsWith("http")) {
               sID = this.URLtoDOI(sID);
@@ -160,7 +160,7 @@ define(["jquery", "underscore", "backbone", "collections/Citations"], function (
             if (cm && !(cm instanceof Citations)) {
               const citationMetadata = Object.entries(cm).map(([pid, data]) => {
                 // Convert format from {id: {data}} to {data, id}
-                const item = { ...data, pid };
+                const item = Object.assign({}, data, { pid });
                 // Origin returned by metrics-service is actually an array, not a
                 // string
                 item.originArray = item.origin;
@@ -221,7 +221,7 @@ define(["jquery", "underscore", "backbone", "collections/Citations"], function (
           if (key == null) return this;
 
           // Handle both `"key", value` and `{key: value}` -style arguments.
-          let attrs = {};
+          var attrs = {};
           if (typeof key === "object") {
             attrs = key;
             options = val;
@@ -300,7 +300,7 @@ define(["jquery", "underscore", "backbone", "collections/Citations"], function (
         } catch (error) {
           console.log(
             "Error in custom set() method on CitationModel. Will attempt to set" +
-              " using with Backbone set(). Attributes and error stack trace:",
+            " using with Backbone set(). Attributes and error stack trace:",
             { key, val, options },
             error
           );
@@ -432,15 +432,15 @@ define(["jquery", "underscore", "backbone", "collections/Citations"], function (
        */
       getTitleFromSourceModel(sourceModel) {
         try {
-          let title = sourceModel.get("title");
+          var title = sourceModel.get("title");
           title = Array.isArray(title) ? title[0] : title;
           // If this is a Data object, there may not be a title, so try to get the
           // title from the file name
           if (!title && sourceModel.get("fileName")) {
-            let fn = sourceModel.get("fileName");
+            var fn = sourceModel.get("fileName");
             const extRegex = /\.[^/.]+$/;
             // Save the extension
-            let ext = fn ? fn.match(extRegex) : null;
+            var ext = fn ? fn.match(extRegex) : null;
             // remove the period and make it all uppercase
             ext = ext ? ext[0].replace(".", "").toUpperCase() : ext;
             // Remove the extension and replace underscores with spaces
@@ -472,7 +472,7 @@ define(["jquery", "underscore", "backbone", "collections/Citations"], function (
        */
       getJournalFromSourceModel(sourceModel) {
         try {
-          let journal = null;
+          var journal = null;
           const datasource = sourceModel.get("datasource");
           const mn = MetacatUI.nodeModel.getMember(datasource);
           const currentMN = MetacatUI.nodeModel.get("currentMemberNode");
@@ -511,7 +511,7 @@ define(["jquery", "underscore", "backbone", "collections/Citations"], function (
       getOriginArrayFromSourceModel(sourceModel) {
         try {
           // AUTHORS
-          let authors =
+          var authors =
             // If it's an EML document, there will be a creator field
             sourceModel.get("creator") ||
             // If it's a science metadata model or solr results, use origin
@@ -634,7 +634,7 @@ define(["jquery", "underscore", "backbone", "collections/Citations"], function (
         } catch (error) {
           console.log(
             "There was an error formatting an author, returning " +
-              "the author input as is.",
+            "the author input as is.",
             error
           );
           return author;
@@ -783,7 +783,7 @@ define(["jquery", "underscore", "backbone", "collections/Citations"], function (
             "^https?:\\/\\/orcid.org\\/(\\d{4}-){3}(\\d{3}[0-9X])$"
           );
           return regex.test(orcid);
-        } catch {
+        } catch (e) {
           return false;
         }
       },
@@ -801,7 +801,7 @@ define(["jquery", "underscore", "backbone", "collections/Citations"], function (
           const model = this;
 
           const callback = function (response) {
-            let name = null;
+            var name = null;
             if (response) {
               if (Array.isArray(response)) {
                 const label = response[0].label;
@@ -847,7 +847,7 @@ define(["jquery", "underscore", "backbone", "collections/Citations"], function (
         } catch (error) {
           console.log(
             `There was an error checking if the citation is from node ${node}.` +
-              `Returning false.`,
+            `Returning false.`,
             error
           );
           return false;
@@ -867,7 +867,7 @@ define(["jquery", "underscore", "backbone", "collections/Citations"], function (
           if (!origin) {
             return this.defaults().originArray;
           }
-          let originArray = origin ? origin.split(", ") : [];
+          var originArray = origin ? origin.split(", ") : [];
           return originArray.map((author) => this.formatAuthor(author));
         } catch (error) {
           console.log(
@@ -896,7 +896,7 @@ define(["jquery", "underscore", "backbone", "collections/Citations"], function (
             .map((a) => {
               if (!a) return null;
               const ndp = a["non-dropping-particle"];
-              let name =
+              var name =
                 (a.given ? a.given + " " : "") +
                 (ndp ? ndp + " " : "") +
                 (a.family ? a.family : "");
@@ -1061,7 +1061,7 @@ define(["jquery", "underscore", "backbone", "collections/Citations"], function (
        */
       getURL: function () {
         const urlSources = ["view_url", "source_url", "sid_url", "pid_url"];
-        for (let i = 0; i < urlSources.length; i++) {
+        for (var i = 0; i < urlSources.length; i++) {
           const url = this.get(urlSources[i]);
           if (url) return url;
         }
@@ -1078,7 +1078,7 @@ define(["jquery", "underscore", "backbone", "collections/Citations"], function (
        */
       getID: function () {
         const idSources = ["pid", "seriesId", "source_url"];
-        for (let i = 0; i < idSources.length; i++) {
+        for (var i = 0; i < idSources.length; i++) {
           const id = this.get(idSources[i]);
           if (id) return id;
         }
