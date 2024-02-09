@@ -10,11 +10,12 @@
     "puppeteer": "^14.1.1"
   },
   "devDependencies": {
+    "@jsdoc/salty": "^0.2.3",
     "@jsdoc/util": "^0.2.4",
     "code-prettify": "^0.1.0",
     "common-path-prefix": "^3.0.0",
+    "husky": "^9.0.10",
     "jsdoc": "^4.0.0",
-    "@jsdoc/salty": "^0.2.3",
     "open-sans-fonts": "^1.6.2"
   },
   "scripts": {
@@ -23,7 +24,8 @@
     "doc": "cd docs; bundle exec jekyll serve",
     "test": "node test/server.js",
     "integration-test": "node test/server.js integration",
-    "view-tests": "node test/server.js keep-running"
+    "view-tests": "node test/server.js keep-running",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
