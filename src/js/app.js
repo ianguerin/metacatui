@@ -28,6 +28,9 @@ require.config({
   map: MetacatUI.themeMap,
   urlArgs: "v=" + (MetacatUI.AppConfig.cachebuster || MetacatUI.metacatUIVersion),
   paths: {
+		es6: '/requirejs-babel/es6',
+		babel: '/requirejs-babel/babel-5.8.34.min',
+		'babel-plugin-module-resolver': '/babel-plugin-module-resolver-standalone/index',
     jquery: MetacatUI.root + '/components/jquery-1.9.1.min',
     jqueryui: MetacatUI.root + '/components/jquery-ui.min',
     jqueryform: MetacatUI.root + '/components/jquery.form',

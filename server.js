@@ -18,6 +18,10 @@ const app = express();
 const src_dir = "src";
 
 app.use(express.static(__dirname + "/" + src_dir));
+
+const nodemodulesdir = "node_modules";
+
+app.use(express.static(__dirname + "/" + nodemodulesdir));
 app.get("*", function(request, response) {
   response.sendFile(path.resolve(__dirname, src_dir, "index.html"));
 });

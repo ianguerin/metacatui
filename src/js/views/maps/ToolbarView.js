@@ -10,7 +10,8 @@ define(
     // Sub-views - TODO: import these as needed
     'views/maps/LayerListView',
     'views/maps/DrawToolView',
-    'views/maps/HelpPanelView'
+    'views/maps/HelpPanelView',
+    'es6!views/maps/SomeEs6Module',
   ],
   function (
     $,
@@ -21,7 +22,8 @@ define(
     // Sub-views
     LayerListView,
     DrawTool,
-    HelpPanel
+    HelpPanel,
+    { SomeEs6Module },
   ) {
 
     /**
@@ -207,7 +209,8 @@ define(
         * @param {Object} [options] - A literal object with options to pass to the view
         */
         initialize: function (options) {
-
+          // Instantiate for side effects;
+          new SomeEs6Module();
           try {
             // Get all the options and apply them to this view
             if (typeof options == 'object') {
@@ -219,7 +222,7 @@ define(
               this.model = new Map();
             }
 
-            if(this.model.get('toolbarOpen') === true) {
+            if (this.model.get('toolbarOpen') === true) {
               this.isOpen = true;
             }
 
@@ -527,7 +530,7 @@ define(
          * @param {SectionElement} sectionEl The section to activate
          */
         activateSection: function (sectionEl) {
-          if(!sectionEl) return;
+          if (!sectionEl) return;
           try {
             if (sectionEl.action && typeof sectionEl.action === 'function') {
               const view = this;
