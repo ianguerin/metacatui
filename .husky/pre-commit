@@ -1,1 +1,11 @@
-npm test
+npm test -- --silent || (echo "\n****\n\nMetacatUI uses a pre-commit hook to run unit tests locally.
+We do this to avoid additional hassle during pull request reviews as all pull requests must pass these checks anyways.
+
+If you're checking in some work-in-progress code, then you can bypass these checks:
+    git commit --no-verify
+
+To run the tests locally without committing you can run:
+    $ npm run test
+Or to view the tests in a web browser:
+    $ npm run view-tests
+"; exit 1)
