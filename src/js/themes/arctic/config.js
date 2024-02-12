@@ -118,11 +118,11 @@ MetacatUI.AppConfig = Object.assign(
           visible: true,
           colorPalette: {
             paletteType: "continuous",
-            property: "count",
+            property: "rount",
             colors: [
               {
                 value: 0,
-                color: "#FFFFFF00",
+                color: "#ff00ffff",
               },
               {
                 value: 1,

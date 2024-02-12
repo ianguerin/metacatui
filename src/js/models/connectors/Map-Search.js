@@ -172,6 +172,11 @@ define([
           this.showGeoHashLayer();
         });
 
+        setTimeout(() => {
+          this.updateGeohashCounts();
+          console.log("updating geohash counts");
+        }, 5000);
+
         // When the search result should be shown on the map (e.g. a user hovers
         // over the map icon), highlight the GeoHash on the map.
         this.listenTo(searchResults, "change:showOnMap", this.selectGeohash);

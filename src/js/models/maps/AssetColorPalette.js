@@ -182,6 +182,7 @@ define([
           color = this.getContinuousColor(propValue);
         }
         color = color || defaultColor;
+        console.log("i came up with",color, "for", prop, "with val", propValue);
         return color;
       },
 

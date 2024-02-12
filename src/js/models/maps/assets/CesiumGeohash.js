@@ -8,6 +8,7 @@ define([
   "models/maps/assets/CesiumVectorData",
   "models/maps/AssetColorPalette",
   "models/maps/AssetColor",
+  "models/maps/GeoBoundingBox",
   "models/maps/Geohash",
   "collections/maps/Geohashes",
 ], function (
@@ -18,6 +19,7 @@ define([
   CesiumVectorData,
   AssetColorPalette,
   AssetColor,
+  GeoBoundingBox,
   Geohash,
   Geohashes
 ) {
@@ -112,6 +114,20 @@ define([
         } catch (error) {
           console.log("Error initializing a CesiumVectorData model", error);
         }
+
+        const geohashes = this.get("geohashes");
+        console.log({ geohashes, type: geohashes instanceof Geohashes });
+        if (!geohashes) {
+          return;
+        }
+        const hashStrings = geohashes.getHashStringsForBounds(new GeoBoundingBox({
+          north: 70,
+          south: 40,
+          east: -120,
+          west: -170,
+        }), 1);
+        const hashes = hashStrings.map((hs, i) => new Geohash({ hashString: hs, properties: { count: i == 2 ? 0 : 99 } }));
+        this.replaceGeohashes(hashes);
       },
 
       /**
@@ -188,6 +204,7 @@ define([
             this.get("geohashes"),
             "add remove update reset",
             function () {
+              console.log("geohashes changed, update stuff");
               this.updateColorRangeValues();
               this.createCesiumModel(true);
             }
@@ -205,7 +222,7 @@ define([
        * to those that are within the current map extent.
        * @returns {Geohashes} The geohashes to display.
        */
-      getGeohashes: function(limitToExtent = true) {
+      getGeohashes: function (limitToExtent = true) {
         let geohashes = this.get("geohashes");
         if (limitToExtent) {
           geohashes = this.getGeohashesForExtent();
@@ -263,6 +280,7 @@ define([
        * Cesium model.
        */
       createCesiumModel: function (recreate = false) {
+        console.log("creating cesium model");
         try {
           const model = this;
           // If there is no map model, wait for it to be set so that we can

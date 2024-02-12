@@ -544,6 +544,7 @@ define([
           point: this.stylePoint,
         };
 
+
         entities.forEach((entity) => {
           const styles = this.getStyles(entity);
           if (!styles) {
@@ -654,7 +655,15 @@ define([
         const properties = this.getPropertiesFromFeature(entity);
         const color = this.colorToCesiumColor(this.getColor(properties));
         const alpha = color.alpha * this.get("opacity");
-        if (alpha === 0) return null;
+        if (alpha === 0) {
+          console.log("tampering with the alpha color for entity");
+          return new Cesium.Color(
+            1,
+            1,
+            1,
+            .5
+          );
+        }
         color.alpha = alpha;
         return this.colorToCesiumColor(color);
       },

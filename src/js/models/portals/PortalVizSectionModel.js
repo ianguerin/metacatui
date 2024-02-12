@@ -72,6 +72,48 @@ define(["jquery",
                   mapConfig = JSON.parse(mapConfig)
                 }
               }
+
+              console.log("override!");
+              mapConfig.layers = [
+                ...mapConfig.layers.slice(0, mapConfig.layers.length - 1),
+                {
+                  type: "CesiumGeohash",
+                  visible: true,
+                  colorPalette: {
+                    paletteType: "continuous",
+                    property: "count",
+                    colors: [
+                      {
+                        value: 0,
+                        color: "#FFFFFF00",
+                      },
+                      {
+                        value: 1,
+                        color: "#f5b9424d",
+                      },
+                      {
+                        value: "max",
+                        color: "#f5a142",
+                      },
+                    ],
+                  },
+                },
+                {
+                  type: "OpenStreetMapImageryProvider",
+                  label: "Base layer",
+                },
+                mapConfig.layers[mapConfig.layers.length - 1],
+              ];
+
+              mapConfig.homePosition = {
+                height: 3750000,
+                longitude: -149.586,
+                latitude: 65.165,
+                heading: 360,
+                pitch: -90,
+                roll: 0,
+              };
+
               modelJSON.mapModel = new Map(mapConfig)
             }
 
