@@ -670,9 +670,9 @@ define([
        */
       completeFlight: function (target, options) {
         try {
-
           // A target is required
           if (!target) return;
+          console.log("Complete flight");
 
           const view = this;
           if (typeof options !== "object") options = {};
@@ -681,6 +681,7 @@ define([
           // If the target is a Bounding Sphere, use the camera's built-in
           // function
           if (target instanceof Cesium.BoundingSphere) {
+            console.log("home button clicked?");
             view.camera.flyToBoundingSphere(target, options);
             return;
           }
@@ -691,6 +692,7 @@ define([
             target instanceof MapAsset &&
             typeof target.getBoundingSphere === "function"
           ) {
+            console.log("hi mom");
             // Pass the dataSourceDisplay for CesiumVectorData models
             target
               .getBoundingSphere(view.dataSourceDisplay)
@@ -717,6 +719,7 @@ define([
           // resolves. There's no native way of getting the bounding sphere or
           // location from a 3DTileFeature!
           if (target instanceof Feature) {
+            console.log("this is what I'm doing");
             // If the object saved in the Feature is an Entity, then this
             // function will get the bounding sphere for the entity on the next
             // run.
@@ -749,6 +752,7 @@ define([
           }
 
           if (target.type && target.type == "GeoPoint") {
+            console.log("home butty");
             view.flyTo(target.toJSON(), options);
             return;
           }
@@ -758,6 +762,7 @@ define([
             typeof target.longitude === "number" &&
             typeof target.latitude === "number"
           ) {
+            console.log("home butty");
             const pointTarget = view.positionToFlightTarget(target);
             view.flyTo(pointTarget, options);
             return;

@@ -7,7 +7,8 @@ define([
   "models/maps/GeoBoundingBox",
   "models/maps/GeoPoint",
   "models/maps/GeoScale",
-], function (Backbone, Features, Feature, GeoBoundingBox, GeoPoint, GeoScale) {
+  "cesium",
+], function (Backbone, Features, Feature, GeoBoundingBox, GeoPoint, GeoScale, Cesium) {
   /**
    * @class MapInteraction
    * @classdesc The Map Interaction stores information about user interaction
@@ -171,6 +172,17 @@ define([
           this.selectFeatures(hoveredFeatures);
         } else if (clickAction === "zoom") {
           this.set("zoomTarget", hoveredFeatures[0]);
+        } else if (clickAction === "zoomAndHide") {
+          console.log("zoom and hide", hoveredFeatures[0]);
+          const fo = hoveredFeatures[0].get("featureObject");
+          if (fo instanceof Cesium.Entity) {
+            const cartographic = Cesium.Cartographic.fromCartesian(fo.position.getValue(new Date()));
+            console.log({ fo, cartographic, fops:fo.position});
+            const mapAsset = hoveredFeatures[0].get("mapAsset")
+            // mapAsset.set("visible", false);
+            this.set("zoomTarget", cartographic);
+          }
+
         }
         // TODO: throttle this?
         this.setClickedPositionFromMousePosition();
@@ -200,12 +212,12 @@ define([
        * properties.
        * @returns {GeoPoint} The corresponding position as a GeoPoint model.
        */
-      setPosition: function(attributeName, position) {
+      setPosition: function (attributeName, position) {
         let point = this.get(attributeName);
         if (!point) {
           point = new GeoPoint();
           this.set(attributeName, point);
-        } 
+        }
         point.set(position);
         return point;
       },
@@ -216,7 +228,7 @@ define([
        * properties.
        * @returns {GeoPoint} The clicked position as a GeoPoint model.
        */
-      setClickedPosition: function(position) {
+      setClickedPosition: function (position) {
         return this.setPosition("clickedPosition", position);
       },
 
@@ -226,7 +238,7 @@ define([
       * properties.
       * @returns {GeoPoint} The mouse position as a GeoPoint model.
       */
-      setMousePosition: function(position) {
+      setMousePosition: function (position) {
         return this.setPosition("mousePosition", position);
       },
 

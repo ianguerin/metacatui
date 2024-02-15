@@ -105,6 +105,8 @@ define(["jquery",
                 mapConfig.layers[mapConfig.layers.length - 1],
               ];
 
+              mapConfig.clickFeatureAction = "zoomAndHide";
+
               mapConfig.homePosition = {
                 height: 3750000,
                 longitude: -149.586,
