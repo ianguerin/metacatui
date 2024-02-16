@@ -50,7 +50,8 @@
 }
 
 /* hide the credits until we can find a better placement for them */
-.cesium-widget-credits, .cesium-credit-lightbox-overlay {
+.cesium-widget-credits,
+.cesium-credit-lightbox-overlay {
   display: none !important;
 }
 
@@ -389,6 +390,15 @@ represents 1 unit of the given distance measurement. */
   pointer-events: all;
 }
 
+.layer-deets {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  height: 75%;
+  overflow: auto;
+}
+
 .toolbar__all-content {
   background-color: var(--map-col-bkg);
   width: var(--map-width-toolbar);
@@ -405,6 +415,7 @@ represents 1 unit of the given distance measurement. */
   max-height: 75%;
   margin: var(--map-size-toolbar-inter-link-margin) 0;
   border-radius: var(--map-border-radius);
+  position: relative;
 }
 
 .toolbar--open .toolbar__all-content {
@@ -995,7 +1006,7 @@ other class: .ui-slider-range */
  *
  */
 
-.map-help-panel{
+.map-help-panel {
   width: 100%;
 }
 
@@ -1064,7 +1075,7 @@ other class: .ui-slider-range */
   align-items: center;
 }
 
-.map-help-panel__title{
+.map-help-panel__title {
   text-transform: uppercase;
   font-size: 0.95rem;
   font-weight: 600;

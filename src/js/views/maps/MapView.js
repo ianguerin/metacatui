@@ -116,10 +116,10 @@ define(
               }
             }
 
-            if(!this.model) {
+            if (!this.model) {
               this.model = new Map();
             }
-            
+
           } catch (e) {
             console.log('A MapView failed to initialize. Error message: ' + e);
           }
@@ -268,10 +268,12 @@ define(
          * @returns {LayerDetailsView} Returns the rendered view
          */
         renderLayerDetails: function () {
+          const ld = this.subElements.toolbarContainer.querySelector(".layer-deets");
+          console.log("layer deets", ld);
           try {
             this.layerDetails = new LayerDetailsView({
-              el: this.subElements.layerDetailsContainer
-            })
+              el: ld
+            });
             this.layerDetails.render()
 
             // When a layer is selected, show the layer details panel. When a layer is
