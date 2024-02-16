@@ -182,7 +182,7 @@
   height: 100%;
   min-height: 100%;
   width: 100%;
-  display: grid;
+  display: flex;
   box-sizing: border-box;
 }
 
@@ -238,12 +238,12 @@
 
 /* On large screens, the toolbar should not overlap the map, it should squish it */
 @media only screen and (min-width: 768px) {
-  .map-view__toolbar-container {
+  /* .map-view__toolbar-container {
     order: 0;
     position: relative;
     display: flex;
     flex-grow: 1;
-  }
+  } */
 }
 
 .map-view__feature-info-container {
@@ -401,6 +401,10 @@ represents 1 unit of the given distance measurement. */
   display: none;
   overflow: hidden;
   pointer-events: all;
+
+  max-height: 75%;
+  margin: var(--map-size-toolbar-inter-link-margin) 0;
+  border-radius: var(--map-border-radius);
 }
 
 .toolbar--open .toolbar__all-content {
