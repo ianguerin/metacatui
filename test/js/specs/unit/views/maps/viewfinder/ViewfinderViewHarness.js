@@ -40,6 +40,14 @@ define([], function () {
       this.view.getInput().trigger({ type: 'keyup', key: 'ArrowDown', });
     }
 
+    hitArrowUp() {
+      this.view.getInput().trigger({ type: "keyup", key: 'ArrowUp', });
+    }
+
+    hitArrowDown() {
+      this.view.getInput().trigger({ type: "keyup", key: 'ArrowDown', });
+    }
+
     getError() {
       return this.view.$el.find('.viewfinder__error').text();
     }
