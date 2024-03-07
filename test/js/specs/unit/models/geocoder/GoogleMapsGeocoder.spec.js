@@ -10,7 +10,7 @@ define(
     const should = chai.should();
     const expect = chai.expect;
 
-    describe('GoogleMapsGeocoder Test Suite', () => {
+    describe.only('GoogleMapsGeocoder Test Suite', () => {
       const state = cleanState(() => {
         const googleMapsGeocoder = new GoogleMapsGeocoder();
         const sandbox = sinon.createSandbox();
