@@ -163,12 +163,14 @@ define([
 
         // The name of the property to conditionally color the features by
         const prop = colorPalette.get("property");
+        
         // The value for the this property in the given properties
         const propValue = properties[prop];
         // Each palette type has different ways of getting the color
         const type = colorPalette.get("paletteType");
         // The collection of colors + conditions
         let colors = colorPalette.get("colors");
+        console.log("get color from color palette", propValue, type, colors);
 
         if (!colors || colors.length === 0) {
           // Do nothing

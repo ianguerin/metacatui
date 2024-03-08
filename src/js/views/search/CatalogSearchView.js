@@ -495,6 +495,7 @@ define([
        * @since 2.22.0
        */
       createSearchResults: function () {
+        console.log("create search results");
         try {
           this.searchResultsView = new SearchResultsView();
           this.searchResultsView.searchResults =

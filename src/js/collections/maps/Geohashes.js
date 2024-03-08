@@ -83,7 +83,7 @@ define([
         if (fix) return p < min ? min : max;
         throw new Error(
           `Precision must be a number between ${min} and ${max}` +
-            ` (inclusive), but got ${p}`
+          ` (inclusive), but got ${p}`
         );
       },
 
@@ -133,6 +133,7 @@ define([
       getHashStringsForBounds: function (bounds, precision) {
         this.validatePrecision(precision, false);
         if (!bounds.isValid()) {
+          console.log("bounds are invalid");
           throw new Error("Bounds are invalid");
         }
         let hashStrings = [];
@@ -156,7 +157,10 @@ define([
         const hashes = this.map((geohash) => geohash.get("hashString"));
         if (precision) {
           this.validatePrecision(precision, false);
-          return hashes.filter((hash) => hash.length === precision);
+          return hashes.filter((hash) => {
+            console.log("hash precision check", hash, hash.length, precision);
+            return hash.length === precision;
+          });
         } else {
           return hashes;
         }
@@ -314,8 +318,8 @@ define([
         if (!conditionMet) {
           console.warn(
             `The area is too large to cover with fewer than ${maxGeohashes} ` +
-              `geohashes at the min precision level (${absMin}). Returning ` +
-              `the min precision level, which may result in too many geohashes.`
+            `geohashes at the min precision level (${absMin}). Returning ` +
+            `the min precision level, which may result in too many geohashes.`
           );
         }
 
@@ -378,10 +382,10 @@ define([
         absMin = this.MIN_PRECISION,
         absMax = this.MAX_PRECISION
       ) {
-        if (!bounds.isValid()){
+        if (!bounds.isValid()) {
           console.warn(
             `Bounds are invalid: ${JSON.stringify(bounds)}. ` +
-              `Returning the min and max allowable precision levels.`
+            `Returning the min and max allowable precision levels.`
           );
           return [absMin, absMax];
         }
@@ -527,7 +531,7 @@ define([
         if (!bounds || !bounds.isValid()) {
           console.warn(
             `Bounds are invalid: ${JSON.stringify(bounds)}. ` +
-              `Returning an empty Geohashes collection.`
+            `Returning an empty Geohashes collection.`
           );
           return new Geohashes();
         }
@@ -695,6 +699,7 @@ define([
         const czmlData = this.models.flatMap(function (geohash) {
           return geohash.toCZML(label);
         });
+        console.log("geohashes to czml", label, czmlData);
 
         return czmlHeader.concat(czmlData);
       },

@@ -294,6 +294,7 @@ define([
        * property specified by the label parameter.
        */
       toCZML: function (label) {
+        // console.log("making individual geohash", label);
         const geoData = this.getGeoData("both");
         if (!geoData) return null;
         const { rectangle, point, properties } = geoData;
@@ -317,8 +318,11 @@ define([
           properties: properties,
         };
         if (label && (properties[label] || properties[label] === 0)) {
+          // console.log("properties from geohash toczml", properties[label], label, properties);
           (feature["label"] = {
             text: properties[label]?.toString(),
+            // TODO(ianguerin): this is just to test if strings area allowed
+            // text: 'ian',
             show: true,
             fillColor: {
               rgba: [255, 255, 255, 255],

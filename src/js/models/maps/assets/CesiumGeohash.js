@@ -65,7 +65,8 @@ define([
           type: "CZMLDataSource",
           label: "Dataset counts",
           geohashes: new Geohashes(),
-          opacity: 0.8,
+          // TODO(ianguerin): change opacity back.
+          opacity: 0.3,
           colorPalette: new AssetColorPalette({
             paletteType: "continuous",
             property: "count",
@@ -112,6 +113,7 @@ define([
         } catch (error) {
           console.log("Error initializing a CesiumVectorData model", error);
         }
+        console.log("initializing CesiumGeohash", assetConfig);
       },
 
       /**
@@ -120,6 +122,7 @@ define([
        * @since 2.25.0
        */
       getPropertyOfInterest: function () {
+        console.log("get property of interest",this.get("colorPalette")?.get("property"));
         return this.get("colorPalette")?.get("property");
       },
 
@@ -165,6 +168,7 @@ define([
        * @since 2.25.0
        */
       replaceGeohashes: function (geohashes) {
+        console.log("replace geohashes");
         this.get("geohashes").reset(geohashes);
       },
 
@@ -253,6 +257,7 @@ define([
        */
       getCZML: function (limitToExtent = true) {
         const geohashes = this.getGeohashes(limitToExtent);
+        console.log('get CZML get property of interest');
         const label = this.getPropertyOfInterest();
         return geohashes.toCZML(label);
       },
@@ -278,6 +283,7 @@ define([
           const cesiumOptions = this.getCesiumOptions();
           const type = model.get("type");
           const data = type === "GeoJsonDataSource" ? this.getGeoJSON() : this.getCZML();
+          console.log("get czml", data);
           cesiumOptions["data"] = data;
           cesiumOptions["height"] = 0;
           model.set("cesiumOptions", cesiumOptions);

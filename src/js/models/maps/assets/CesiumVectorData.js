@@ -149,6 +149,7 @@ define([
           const cesiumOptions = this.getCesiumOptions();
           const type = model.get("type");
           const label = model.get("label") || "";
+          console.log("label for cesium vector data", label, cesiumOptions);
           const dataSourceFunction = Cesium[type];
 
           // If the cesium model already exists, don't create it again unless
@@ -632,6 +633,7 @@ define([
        * @since 2.25.0
        */
       colorToCesiumColor: function (color) {
+        console.log("convnerting color", color);
         color = color?.get ? color.get("color") : color;
         if (!color) return null;
         return new Cesium.Color(
@@ -652,9 +654,20 @@ define([
        */
       colorForEntity: function (entity) {
         const properties = this.getPropertiesFromFeature(entity);
+        console.log("properties color for entity", properties);
         const color = this.colorToCesiumColor(this.getColor(properties));
         const alpha = color.alpha * this.get("opacity");
-        if (alpha === 0) return null;
+        console.log('color for entity', alpha, color.alpha, this.get('opacity'));
+        if (alpha === 0) {
+          // console.log("tampering with the alpha color for entity");
+          return ;
+          // return new Cesium.Color(
+          //   1,
+          //   1,
+          //   1,
+          //   .5
+          // );
+        }
         color.alpha = alpha;
         return this.colorToCesiumColor(color);
       },

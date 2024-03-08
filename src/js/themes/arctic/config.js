@@ -118,19 +118,12 @@ MetacatUI.AppConfig = Object.assign(
           visible: true,
           colorPalette: {
             paletteType: "continuous",
-            property: "count",
+            // TODO(ianguerin): don't do this.
+            property: "ian",
             colors: [
               {
-                value: 0,
-                color: "#FFFFFF00",
-              },
-              {
-                value: 1,
-                color: "#f5b9424d",
-              },
-              {
-                value: "max",
-                color: "#f5a142",
+                value: 'lol',
+                color: "#ff00ffff",
               },
             ],
           },

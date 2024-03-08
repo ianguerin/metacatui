@@ -167,7 +167,8 @@ define([
 
         // Pass the facet counts to the GeoHash layer when the search results
         // are returned.
-        this.listenTo(searchResults, "update reset", function () {
+        this.listenTo(searchResults, "update reset", function (e) {
+          console.log("listento search results update/reset", e);
           this.updateGeohashCounts();
           this.showGeoHashLayer();
         });
@@ -255,14 +256,17 @@ define([
        * property.
        */
       facetCountsToGeohashAttrs: function (counts) {
+        console.log("facet counts to geohash attrs", counts);
         if (!counts) return [];
         const props = [];
         for (let i = 0; i < counts.length; i += 2) {
           props.push({
             hashString: counts[i],
             properties: {
+              // TODO(ianguerin): okay this is where it is written, but where is it read?
               count: counts[i + 1],
-            },
+              ian: 'lol',
+            }
           });
         }
         return props;
@@ -276,6 +280,7 @@ define([
       getGeohashCounts: function () {
         const searchResults = this.get("searchResults");
         const facetCounts = searchResults?.facetCounts;
+        console.log("get geohash counts", facetCounts, searchResults);
         if (!facetCounts) return null;
         const geohashFacets = Object.keys(facetCounts).filter((key) =>
           key.startsWith("geohash_")
@@ -290,6 +295,7 @@ define([
        * @fires CesiumGeohash#change:totalCount
        */
       updateGeohashCounts: function () {
+        console.log("update geohash counts");
         const geohashLayer = this.get("geohashLayer");
         const counts = this.getGeohashCounts();
         const modelAttrs = this.facetCountsToGeohashAttrs(counts);
