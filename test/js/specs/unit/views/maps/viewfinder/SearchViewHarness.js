@@ -41,7 +41,7 @@ define([], function () {
     }
 
     getError() {
-      return this.view.$el.find('.viewfinder__error').text();
+      return this.view.$el.find('.viewfinder-search__error').text();
     }
 
     getInput() {
