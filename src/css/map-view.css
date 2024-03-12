@@ -1164,6 +1164,23 @@ other class: .ui-slider-range */
   }
 }
 
+.viewfinder-zoom-presets {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+
+  .viewfinder-zoom-presets__preset {
+    border-radius: 4px;
+    border: 1px solid var(--portal-col-bkg-active);
+    cursor: pointer;
+    padding: 8px;
+
+    &:hover {
+      background-color: var(--map-col-bkg-lightest);
+    }
+  }
+}
+
 /** START - Expansion panel View. */
 .expansion-panel {
 	border: solid var(--portal-col-bkg-active);
