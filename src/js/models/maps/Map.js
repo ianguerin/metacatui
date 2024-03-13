@@ -180,6 +180,8 @@ define([
        * feedback section in the toolbar.
        * @property {String} [feedbackText=null] - The text to show in the
        * feedback section.
+       * @property {Object[]} [zoomPresets=[]] - Predefined list of locations
+       * with an enabled list of layer IDs to be showin the zoom presets UI.
        */
       defaults: function () {
         return {
@@ -201,14 +203,16 @@ define([
           showToolbar: true,
           showLayerList: true,
           showHomeButton: true,
-          showViewfinder: false,
+          // TODO(ianguerin): revert this.
+          showViewfinder: true,
           toolbarOpen: false,
           showScaleBar: true,
           showFeatureInfo: true,
           clickFeatureAction: "showDetails",
           showNavHelp: true,
           showFeedback: false,
-          feedbackText: null
+          feedbackText: null,
+          zoomPrests: [],
         };
       },
 
@@ -237,6 +241,60 @@ define([
         } catch (error) {
           console.log('Failed to initialize a Map model.', error);
         }
+
+        // TODO(ianguerin): This should be loaded from metadata.
+        this.set('zoomPresets', [
+          {
+            title: 'Brevig Mission',
+            loc: {
+              lat: 65.3381235,
+              long: -166.49594395,
+            },
+            height: 5000,
+            description: 'Report to LEO of ground sinking at historic mass burial site',
+            enabledLayers: ['Ice-Wedge Polygons (high ice regions)', 'Local News Stories'],
+          },
+          {
+            title: 'Golovin',
+            loc: {
+              lat: 64.56122491,
+              long: -163.00985255,
+            },
+            height: 5000,
+            description: 'Erosion at derelict fish processing plant and at old dump site are well documented by community members.',
+            enabledLayers: ['Local News Stories'],
+          },
+          {
+            title: 'Huslia',
+            loc: {
+              lat: 65.7,
+              long: -156.387134,
+            },
+            height: 5000,
+            description: 'Erosion reported by ANTHC personnel working on an infrastructure project in Huslia',
+            enabledLayers: ['Local News Stories'],
+          },
+          {
+            title: 'Kivalina',
+            loc: {
+              lat: 67.73266848,
+              long: -164.52463932,
+            },
+            height: 5000,
+            description: 'Community is moving inland. Even the evacuation road has had (likely) permafrost-related degradation.',
+            enabledLayers: ['Ice-Wedge Polygons (high ice regions)', 'Local News Stories'],
+          },
+          {
+            title: 'Kotzebue',
+            loc: {
+              lat: 66.90537742,
+              long: -162.5112918,
+            },
+            height: 5000,
+            description: 'Unusual sudden lake draining event, which was well-documented by community members and PDG scientists. Event is clearly visible via historical Google Earth imagery.',
+            enabledLayers: ['Ice-Wedge Polygons (high ice regions)', 'Local News Stories'],
+          },
+        ]);
       },
 
       /**

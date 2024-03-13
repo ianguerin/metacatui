@@ -7,9 +7,8 @@ define(
     'text!templates/maps/viewfinder/viewfinder-zoom-preset.html',
   ],
   (_, Backbone, Template) => {
-    //TODO(ianguerin): fixe the classnames.
     // The base classname to use for this View's template elements.
-    const BASE_CLASS = 'viewfinder-zoom-presets';
+    const BASE_CLASS = 'viewfinder-zoom-preset';
 
     /**
      * @class ZoomPresetView
@@ -42,6 +41,11 @@ define(
        */
       classNames: {
         preset: `${BASE_CLASS}__preset`,
+        description: `${BASE_CLASS}__description`,
+        title: `${BASE_CLASS}__title`,
+        layers: `${BASE_CLASS}__layers`,
+        layer: `${BASE_CLASS}__layer`,
+        layerContent: `${BASE_CLASS}__layer-content`,
       },
 
       /**
@@ -66,7 +70,10 @@ define(
 
       /**
        * @typedef {Object} ZoomPresetViewOptions
-       * @property {ViewfinderModel} The model associated with the parent view.
+       * // TODO(ianguerin) preset should be a model.
+       * @property {preset} The metadata associated with this zoom preset.
+       * @property {selectCallback} Function to be called when this preset is
+       * selected.
        */
       initialize({ preset, selectCallback }) {
         this.templateVars.classNames = this.classNames;

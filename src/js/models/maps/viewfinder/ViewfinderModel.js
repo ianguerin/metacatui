@@ -43,6 +43,9 @@ define(
       initialize({ mapModel }) {
         this.geocoderSearch = new GeocoderSearch();
         this.mapModel = mapModel;
+
+        // TODO(ianguerin): this should be converting the xml into the model that I'm interested in.
+        this.set('zoomPresets', mapModel.get('zoomPresets'));
       },
 
       /** 
@@ -115,6 +118,22 @@ define(
             coords.north,
           )
         });
+      },
+
+      selectZoomPreset(preset) {
+        const layers = this.mapModel.get('layers');
+        const enabledLayers = ['Base map', ...preset.enabledLayers];
+        layers.each(layer => {
+          // TODO(ianguerin): the layer id should be a unique, unchanging ID...
+          const layerId = layer.get('label');
+          layer.set('visible', enabledLayers.includes(layerId));
+        });
+
+        const geoPoint = new GeoPoint();
+        geoPoint.set('latitude', preset.loc.lat);
+        geoPoint.set('longitude', preset.loc.long);
+        geoPoint.set('height', preset.height);
+        this.mapModel.zoomTo(geoPoint);
       },
 
       /**

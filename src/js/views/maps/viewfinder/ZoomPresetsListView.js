@@ -72,7 +72,6 @@ define(
         this.children = this.viewfinderModel.get('zoomPresets').map(preset => {
           const view = new ZoomPresetView({
             selectCallback: () => {
-              console.log("Select callback");
               this.viewfinderModel.selectZoomPreset(preset);
             },
             preset,

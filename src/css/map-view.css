@@ -1078,6 +1078,10 @@ other class: .ui-slider-range */
   width: 100%;
 }
 
+.viewfinder__search {
+  margin-bottom: 16px;
+}
+
 .viewfinder__field {
   border-radius: 4px;
   border: 1px solid var(--portal-col-bkg-active);
@@ -1167,16 +1171,54 @@ other class: .ui-slider-range */
 .viewfinder-zoom-presets {
   display: flex;
   flex-direction: column;
+  margin-top: 16px;
   row-gap: 4px;
 
-  .viewfinder-zoom-presets__preset {
+  .viewfinder-zoom-preset__preset {
     border-radius: 4px;
     border: 1px solid var(--portal-col-bkg-active);
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
     padding: 8px;
+    row-gap: 8px;
 
     &:hover {
       background-color: var(--map-col-bkg-lightest);
+    }
+
+    .viewfinder-zoom-preset__title {
+      font-weight: bold;
+    }
+
+    .viewfinder-zoom-preset__layers {
+      column-gap: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      overflow: hidden;
+      row-gap: 4px; 
+    }
+
+    .viewfinder-zoom-preset__layer {
+      align-items: center;
+      background: var(--map-col-bkg-lighter);
+      border-radius: 4px;
+      display: flex;
+      height: 24px;
+      justify-content: center;
+      max-width: 200px;
+      overflow: hidden;
+      padding: 0 16px 0 8px;
+
+      .viewfinder-zoom-preset__layer-content {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-wrap: nowrap;
+        
+        i {
+          padding-right: 4px;
+        }
+      }
     }
   }
 }
@@ -1211,6 +1253,7 @@ other class: .ui-slider-range */
 
 	.expansion-panel__title {
 		user-select: none;
+    flex: 1;
 	}
 
 	.expansion-panel__content {
@@ -1227,6 +1270,7 @@ other class: .ui-slider-range */
 		display: flex;
 		justify-content: space-between;
 		cursor: pointer;
+    column-gap: 16px;
 	} 
 }
 /** END - Expansion panel View. */
