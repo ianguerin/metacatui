@@ -214,7 +214,8 @@ define([
           showToolbar: true,
           showLayerList: true,
           showHomeButton: true,
-          showViewfinder: false,
+          // TODO(ianguerin): reset to false.
+          showViewfinder: true,
           toolbarOpen: false,
           showScaleBar: true,
           showFeatureInfo: true,
